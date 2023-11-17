@@ -1,0 +1,124 @@
+footer {
+    display: flex;
+    justify-content: space-between;
+    padding: 50px; 
+    background-color: rgba(15, 15, 15, 0.9);
+    color: white;
+    margin-top:32.3vh;
+    padding: 20px;
+}
+
+.footer-section {
+    margin: 0;
+    height: 110px;
+    max-width: 700px; 
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: space-between;
+    margin-top: 50px;
+}
+
+.footer-section p {
+    margin: 0;
+    text-align: start;
+}
+
+/*  ---------------------------- Left --------------------------------------- */
+
+.footer-links {
+    margin-bottom: 30px;
+}
+
+.footer-links span {
+    margin-right: 30px;
+    font-size: 16px;
+}
+
+.copyright {
+    margin-bottom: 40px;
+}
+
+.copyright p {
+    display: flex;
+    font-size: 12px;
+    margin: 0;
+    align-items: flex-start;
+    flex-direction: column;
+}
+
+/*  ---------------------------- Center --------------------------------- */
+
+.center-section {
+    align-items: flex-start;
+    margin-top: 50px;
+}
+
+.follow-us {
+    margin-bottom: 30px;
+    top: 50px;
+}
+
+.social-icons {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    margin-bottom: 30px;
+    transition: transform 0.8s ease-out;
+}
+
+.social-icons img {
+    margin-right: 10px;
+    max-width: 100%;
+}
+
+.facehover,
+.twitterhover,
+.googlehover,
+.githover {
+    transition: transform 0.8s ease-out;
+}
+
+/*  ----------------------------- Right ------------------------------------- */
+
+.footer-section.right-section {
+    display: flex;
+    flex-direction: column; 
+    margin-right: 50px;
+}
+
+.app-icons {
+    margin-bottom: 10px;
+}
+
+.app-icons img {
+    width: 120px;
+    height: 50px;
+    margin-right: 10px;
+}
+
+/*  -------------------------------- Hover --------------------------------- */
+
+.facehover:hover,
+.twitterhover:hover,
+.googlehover:hover,
+.githover:hover {
+    transform: translateY(-5px);
+    cursor: pointer;
+    border: 1px solid;
+    border-color: chocolate;
+}
+
+.social-icons:hover {
+    transform: scale(1.1);
+}
+
+.googleic:hover,
+.appic:hover,
+.googleic:focus,
+.appic:focus {
+    cursor: pointer;
+    overflow: hidden;
+    transform: scale(0.9);
+}
+

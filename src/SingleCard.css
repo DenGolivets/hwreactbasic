@@ -30,13 +30,14 @@
     background: linear-gradient(90deg, rgba(0, 0, 0, 0.80) 0%, rgba(20, 20, 20, 0.40) 20%, rgba(83, 100, 141, 0.00) 100%);
 }
 
-.card:hover {
+.card {
     -webkit-transform: scale(1.1);
     transform: scale(1.1);
     -webkit-transition: all 0.8s;
     transition: all 0.8s;
     opacity:1;
 }
+
 
 .btn {
     width: 120px;
@@ -51,4 +52,8 @@
 
 .btn:active {
 	transform: scale(90%);
+}
+
+.card {
+    margin-left: 50px;
 }
