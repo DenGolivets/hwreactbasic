@@ -4,16 +4,21 @@ import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
 import { Button, CardActionArea } from '@mui/material';
+import { DEFAULT_IMAGE } from '../../constans/constans'
 // import Button from '@mui/material/Button';
 
+
+
 import '../../SingleCard.css'
+
+
+
 
 export default function SingleCard({
     id,
     name, 
-    image, 
+    image = DEFAULT_IMAGE,
     time,
-    onClick
 }) {
     const handleClick = (id) => {
         console.log(id);

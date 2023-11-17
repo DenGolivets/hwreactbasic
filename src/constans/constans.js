@@ -1,0 +1,1 @@
+export const DEFAULT_IMAGE = "https://www.moderntimes.review/wp-content/uploads/2016/11/film-loop.gif"

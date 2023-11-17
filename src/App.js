@@ -1,8 +1,9 @@
 import logo from './logo.svg';
 import './App.css';
 import Navigation from './components/Navigation/Navigation';
-import SingleCard from './components/SingleCard/SingleCard';
 import Grid from "@mui/material/Grid";
+import Footer from './components/Footer/Footer';
+import SingleCard from './components/SingleCard/SingleCard'
 
 const mockData = [
   {
@@ -49,8 +50,10 @@ function App() {
       </Grid>
       ))}
       </Grid>
+      <Footer />
     </div>
   );
+  
 }
 
 export default App;
