@@ -3,16 +3,12 @@ import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
-import { Button, CardActionArea } from '@mui/material';
+// import { Button, CardActionArea } from '@mui/material';
+import CardActionArea from '@mui/material/CardActionArea';
 import { DEFAULT_IMAGE } from '../../constans/constans'
-// import Button from '@mui/material/Button';
-
-
+import Button from '@mui/material/Button';
 
 import '../../SingleCard.css'
-
-
-
 
 export default function SingleCard({
     id,
@@ -27,9 +23,6 @@ export default function SingleCard({
     <Card sx={{ 
         marginTop: "100px",
         maxWidth: 345,
-        // "& :hover": {
-        // backgroundColor: "yellow",
-        // }
         }}
         className="card"
         >
@@ -45,17 +38,14 @@ export default function SingleCard({
         <div className='Absol'>
             <p className='name'>{name}</p>
             <p className='time'>{time}</p>
-            <Button 
-            onClick={() => handleClick(id)}
-            // variant="contained"
-            disableElevation
-            style={{ border: "1px solid #E50914", background: "#E50914", color: "#fff" }}
+        <div
+            onClick={() => handleClick(id)} 
             className="btn"
             >
             Show More
-            </Button>
-            </div>
-      </CardActionArea>
+        </div>
+        </div>
+    </CardActionArea>
     </Card>
   );
 }
