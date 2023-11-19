@@ -47,7 +47,7 @@ export default function SingleCard({
             <p className='time'>{time}</p>
             <Button 
             onClick={() => handleClick(id)}
-            variant="contained"
+            // variant="contained"
             disableElevation
             style={{ border: "1px solid #E50914", background: "#E50914", color: "#fff" }}
             className="btn"
