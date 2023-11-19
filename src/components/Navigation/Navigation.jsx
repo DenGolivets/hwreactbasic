@@ -40,7 +40,7 @@ function Navigation() {
   };
 
   return (
-    <AppBar position="static" sx={{ backgroundColor: 'rgba(202, 84, 16, 0.652)' }}>
+    <AppBar position="static" sx={{ backgroundColor: 'rgba(15, 15, 15, 0.9)' }}>
       <Container maxWidth="xl">
         <Toolbar disableGutters>
           {/* <AdbIcon sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }} /> */}
