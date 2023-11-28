@@ -8,7 +8,7 @@ import CardActionArea from '@mui/material/CardActionArea';
 import { DEFAULT_IMAGE } from '../../constans/constans'
 import Button from '@mui/material/Button';
 
-import '../../SingleCard.css'
+import './singleCard.css';
 
 export default function SingleCard({
     id,
@@ -16,9 +16,7 @@ export default function SingleCard({
     image = DEFAULT_IMAGE,
     time,
 }) {
-    const handleClick = (id) => {
-        console.log(id);
-    }
+
     return (
     <Card sx={{ 
         marginTop: "100px",
@@ -39,9 +37,8 @@ export default function SingleCard({
             <p className='name'>{name}</p>
             <p className='time'>{time}</p>
         <div
-            onClick={() => handleClick(id)} 
             className="btn"
-            >
+        >  
             Show More
         </div>
         </div>
