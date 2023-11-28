@@ -2,7 +2,7 @@ import logo from './logo.svg';
 import './App.css';
 import Navigation from './components/Navigation/Navigation';
 import Grid from "@mui/material/Grid";
-import Footer from './components/Footer/Footer';
+import Footer from './components/Footer/Footer'
 import SingleCard from './components/SingleCard/SingleCard'
 
 const mockData = [
@@ -33,6 +33,7 @@ const mockData = [
 ];
 
 function App() {
+
 
   return (
     <div className="App">
