@@ -12,12 +12,19 @@ import Button from '@mui/material/Button';
 import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 import AdbIcon from '@mui/icons-material/Adb';
+import { NavLink } from "react-router-dom";
+import { MENU } from '../../constans/constans';
+import "./navigation.css"
 
 import logo from '../../img/logo.png'
 
 
 const pages = ['Home', 'TV Shows', 'About Us'];
 const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
+
+const textStyle = {
+  gap: '20px',
+}
 
 
 function Navigation() {
@@ -40,7 +47,7 @@ function Navigation() {
   };
 
   return (
-    <AppBar position="static" sx={{ backgroundColor: 'rgba(15, 15, 15, 0.9)' }}>
+    <AppBar position="static" sx={{ backgroundColor: 'rgba(34, 34, 34, 0.1)' }}>
       <Container maxWidth="xl">
         <Toolbar disableGutters>
           {/* <AdbIcon sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }} /> */}
@@ -116,15 +123,18 @@ function Navigation() {
           >
             {/* LOGO */}
           </Typography>
-          <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
-            {pages.map((page) => (
-              <Button
-                key={page}
-                onClick={handleCloseNavMenu}
-                sx={{ my: 2, color: 'white', display: 'block' }}
+          <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex', justifyContent: 'space-evenly'   }}}>
+            {MENU.map(({ name, link }, index) => (
+              <NavLink
+                style={textStyle}
+                key={index}
+                className={({isActive}) => 
+              `navLink ${isActive ? 'isActive' : ''}`
+            } to={link}
+                // sx={{ my: 2, color: 'white', display: 'block' }}
               >
-                {page}
-              </Button>
+                {name}
+              </NavLink>
             ))}
           </Box>
 

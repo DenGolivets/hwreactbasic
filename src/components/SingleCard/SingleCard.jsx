@@ -3,12 +3,13 @@ import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
-// import { Button, CardActionArea } from '@mui/material';
 import CardActionArea from '@mui/material/CardActionArea';
 import { DEFAULT_IMAGE } from '../../constans/constans'
-import Button from '@mui/material/Button';
+import { Link, useParams } from "react-router-dom";
+
 
 import './singleCard.css';
+import { style, width } from '@mui/system';
 
 export default function SingleCard({
     id,
@@ -16,7 +17,9 @@ export default function SingleCard({
     image = DEFAULT_IMAGE,
     time,
 }) {
-
+    const handleClick = (title) => {
+        console.log(`${title} clicked!`);
+    }
     return (
     <Card sx={{ 
         marginTop: "100px",
@@ -36,11 +39,12 @@ export default function SingleCard({
         <div className='Absol'>
             <p className='name'>{name}</p>
             <p className='time'>{time}</p>
-        <div
+        <Link
+            to={`/tvshows/${id}`}
             className="btn"
         >  
             Show More
-        </div>
+        </Link>
         </div>
     </CardActionArea>
     </Card>

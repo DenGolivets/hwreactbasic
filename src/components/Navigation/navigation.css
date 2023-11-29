@@ -1,0 +1,11 @@
+.navLink {
+    text-decoration: none;
+    color: white;
+    margin: 0 5px;
+    text-transform: uppercase;
+    font-weight: 400;
+}
+
+.isActive {
+    color: red;
+}
