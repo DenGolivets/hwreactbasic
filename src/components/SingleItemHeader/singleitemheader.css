@@ -1,0 +1,92 @@
+.Main {
+    display: flex;
+    justify-content: space-between;
+    align-items: start;
+    width: 100%;
+    padding: 20px;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+.Info_block {
+    margin-left: 0.1rem;
+}
+
+.ratting_name_block {
+    display: flex;
+    align-items: left;
+    font-size: 1rem;
+    flex-wrap: wrap;
+}
+
+.rating {
+    display: flex;
+    align-items: center;
+    margin-left: 1rem;
+}
+
+.number_staring {
+    font-weight: bold;
+    color: #fff;
+    font-size: 1.1em;
+    margin-top: 4px;
+    margin-left: 10px;
+}
+
+.pos_genre_info {
+    color: rgb(182, 42,36);
+    font-weight: bold;
+    font-size: 1.5em;
+}
+
+.line_objects {
+    max-width: 100%;
+    height: 40px;
+}
+
+
+
+.graysquare-hover:hover {
+    color: rgb(253, 4, 4);
+    box-shadow: 0 0 5px rgb(253, 4, 4);
+    filter: drop-shadow(0px 0px 5px #FF0000);
+    cursor: pointer;
+}
+.graycircle-hover {
+    transition: transform 1s ease-in-out, filter 2s ease-in-out;
+}
+
+.graycircle-hover:hover {
+    color: rgb(253, 4, 4);
+    box-shadow: 0 0 10px rgb(253, 4, 4);
+    filter: drop-shadow(0px 0px 10px #FF0000);
+}
+
+.iconhover:hover {
+    color: rgb(0, 0, 0);
+}
+
+.Singleimg {
+    max-width: 100%;
+    width: 270px;
+    height: auto;
+    margin-top: 1rem;
+    margin-right: 2rem;
+    border-radius: 10px;
+    transition: transform 1s ease-in-out, filter 2s ease-in-out;
+}
+
+.singleimg-hover:hover {
+    transform: scale(1);
+    filter: drop-shadow(0px 0px 15px #FF0000);
+    cursor: pointer;
+    animation: blink 3.5s ease-in-out 3.5s infinite;
+}
+@keyframes blink {
+    0%, 100% {
+        filter: drop-shadow(0px 0px 15px #FF0000);
+    }
+    50% {
+        filter: drop-shadow(0px 0px 15px transparent);
+    }
+}

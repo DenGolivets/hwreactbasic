@@ -3,6 +3,7 @@ import { createBrowserRouter } from "react-router-dom";
 import Home from './pages/Home';
 import TvShows from './pages/TV Shows';
 import NotFound from './pages/Not Found';
+import SingleItemHeader from './components/SingleItemHeader/SingleItemHeader';
 import FilmDetails from './pages/FilmDetails';
 
 // const mockData = [
@@ -43,12 +44,12 @@ const router = createBrowserRouter([
         element: <Home />,
       },
       {
-        path: "/tvshows",
-        element: <TvShows />,
+        path: "/show/:filmId",
+        element: <FilmDetails />,
       },
       {
-        path: "/tvshows/:filmId",
-        element: <FilmDetails />,
+        path: "/tvshows",
+        element: <TvShows />
       }
     ],
   },
