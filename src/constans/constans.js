@@ -5,6 +5,10 @@ export const MENU = [
         link: '/home'
     },
     {
+        name: 'Show',
+        link: 'show'
+    },
+    {
         name: 'tv shows',
         link: 'tvshows'
     },

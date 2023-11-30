@@ -4,6 +4,7 @@ import Grid from "@mui/material/Grid";
 import SingleCard from "../components/SingleCard/SingleCard";
 import { useDispatch, useSelector } from "react-redux";
 import { setSearch } from "../store/SearchSlice";
+import { DEFAULT_IMAGE } from "../constans/constans";
 
 function Home() {
     const [selectedFilm, setSelectedFilm] = useState(null);
@@ -37,7 +38,7 @@ function Home() {
                 backgroundColor: 'rgba(209,208,207,.6)',
                 height: '30px',
                 border: 'none',
-                marginLeft: '80px',
+                marginLeft: '50px',
               }}
               value={apiSearch} onChange={handleSearch} ref={searchRef} />
               </Grid>
@@ -48,7 +49,7 @@ function Home() {
               <SingleCard
               id={id}
               name={name}
-              image={image ? image.medium || "" : ""}
+              image={image ? image.medium || DEFAULT_IMAGE : DEFAULT_IMAGE}
               onClick={handleCardClick}
               />
               </Grid>
