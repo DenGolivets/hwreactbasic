@@ -33,8 +33,8 @@ export default function SingleCard({
             image={image}
             component="img"
             sx={{ 
-                height: "222px", 
-                width: "395px",
+                height: "300px", 
+                width: "500px",
                 position: "relative",
             }}
             className="cardMedia"
