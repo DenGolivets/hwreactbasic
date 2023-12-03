@@ -13,7 +13,6 @@ function Home() {
     const searchRef = useRef("");
     const dispatch = useDispatch();
     const apiData = useRequest(apiSearch);
-    
     useEffect (() => {
         searchRef.current.focus();
     }, [])
@@ -42,7 +41,6 @@ function Home() {
               }}
               value={apiSearch} onChange={handleSearch} ref={searchRef} />
               </Grid>
-    
               <Grid container spacing={2} sx={{ padding: "20px" }}>
               {apiData.map(({ id, name, image }, index) => (
               <Grid item xs={3} key={index}>

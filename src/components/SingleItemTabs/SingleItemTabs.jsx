@@ -35,7 +35,7 @@ function CustomTab({ value, index, children }) {
         hidden={value !== index}
         id={`film-tabpanel-${index}`}
         aria-labelledby={`film-tab-${index}`}
-        style={{ overflowY: "auto" }}
+        style={{ overflowY: "auto", paddingRight: '30px', paddingLeft: '30px' }}
     >
       {value === index && (
         <div
@@ -99,6 +99,12 @@ function SingleItemTabs({ activeTab, handleChangeTab, summary, series }) {
                 color: "white",
                 height: "200px",
                 overflow: "auto",
+                paddingLeft: '40px',
+                paddingRight: '40px',
+                backgroundColor: '#191919',
+                border: '2px solid #282B2F', 
+                boxShadow: '0 0 10px rgba(0, 0, 0, 0.6)',
+                borderRadius: '10px' 
               }}
             />
           </CustomTab>
@@ -109,9 +115,6 @@ function SingleItemTabs({ activeTab, handleChangeTab, summary, series }) {
             width: "100%",
             marginBottom: "2rem",
             boxShadow: "0px 2px 4px -1px rgba(0,0,0,0.2), 0px 4px 5px 0px rgba(0,0,0,0.14), 0px 1px 10px 0px rgba(0,0,0,0.12)",
-            marginLeft: '20px',
-            marginRight: '20px',
-            
           }}
         >
         <CustomTab value={activeTab} index={1}>
@@ -152,9 +155,9 @@ function SingleItemTabs({ activeTab, handleChangeTab, summary, series }) {
                 </tr>
               </thead>
               <tbody>
-                {series.map((series) => (
+                {series.map(({ name, id, season, number, airdate, rating }) => (
                   <tr
-                    key={series.id}
+                    key={id}
                     style={{
                       margin: "1rem",
                       borderBottom: "1px solid white",
@@ -168,8 +171,8 @@ function SingleItemTabs({ activeTab, handleChangeTab, summary, series }) {
                         paddingLeft: '15px'
                       }}
                     >
-                      {series.name} (Season {series.season}, Episode
-                      {series.number})
+                      {name} (Season {season}, Episode
+                      {number})
                     </td>
                     <td
                       style={{
@@ -178,7 +181,7 @@ function SingleItemTabs({ activeTab, handleChangeTab, summary, series }) {
                         textAlign: "center",
                       }}
                     >
-                      {series.airdate}
+                      {airdate}
                     </td>
                     <td
                       style={{
@@ -188,14 +191,14 @@ function SingleItemTabs({ activeTab, handleChangeTab, summary, series }) {
                       }}
                     >
                       <Rating
-                        name={`rating-${series.id}`}
-                        value={series.rating.average}
+                        name={`rating-${id}`}
+                        value={rating.average}
                         max={10}
                         size="small"
                         readOnly
                         style={{ color: "red" }}
                       />
-                      {series.rating.average}
+                      {rating.average}
                     </td>
                   </tr>
                 ))}
