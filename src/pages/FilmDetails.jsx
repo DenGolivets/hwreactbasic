@@ -3,19 +3,23 @@ import { useParams } from "react-router-dom";
 import axios from "axios";
 import SingleItemHeader from "../components/SingleItemHeader/SingleItemHeader";
 import SingleItemTabs from "../components/SingleItemTabs/SingleItemTabs";
+import useReqActor from "../hooks/useReqActor";
+import ActorItem from "../components/ActorItem/ActorItem";
 
 
 function FilmDetails() {
     const { filmId } = useParams();
+    const { actorData } = useReqActor();
     const [filmData, setFilmData] = useState(null);
     const [activeTab, setActiveTab] = useState(0);
-    
+    console.log(filmData);
     useEffect(() => {
         async function fetchFilmData() {
           try {
             const response = await axios.get(
               `https://dolphin-app-pc6ii.ondigitalocean.app/article/${filmId}`
             );
+            
             setFilmData(response.data);
           } catch (error) {
             console.error(error);
@@ -35,9 +39,8 @@ function FilmDetails() {
         averageRuntime,
         premiered,
         image,
-        summary,
-        status,
         series,
+        summary,
         views,
       } = filmData;
     
@@ -54,17 +57,18 @@ function FilmDetails() {
               averageRuntime={averageRuntime}
               premiered={premiered}
               image={image}
-              summary={summary}
               views={views}
           />
             <SingleItemTabs
               activeTab={activeTab}
               handleChangeTab={handleChangeTab}
-              summary={summary}
-              status={status}
               genres={genres}
+              summary={summary}
               series={series}
           />
+
+          <ActorItem />
+
         </>
       );
     }
