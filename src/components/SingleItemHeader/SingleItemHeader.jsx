@@ -209,11 +209,14 @@ function SingleItemHeader({ name, rating, genres, averageRuntime, premiered, ima
             {/* </Grid> */}
           <div>
             <img
-              className='Singleimg singleimg-hover'
+              className={`Singleimg singleimg-hover ${!image ? 'default-image-size' : ''}`}
               src={image ? image.medium || DEFAULT_IMAGE : DEFAULT_IMAGE}
               alt={name}
             />
           </div>
+
+
+
           <div style={{                 
                 display: "flex",
                 position: 'absolute',

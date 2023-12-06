@@ -133,7 +133,6 @@ function Navigation() {
                 className={({isActive}) => 
               `navLink ${isActive ? 'isActive' : ''}`
             } to={link}
-                // sx={{ my: 2, color: 'white', display: 'block' }}
               >
                 {name}
               </NavLink>
