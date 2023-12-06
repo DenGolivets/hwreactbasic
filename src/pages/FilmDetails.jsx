@@ -6,13 +6,13 @@ import SingleItemTabs from "../components/SingleItemTabs/SingleItemTabs";
 import useReqActor from "../hooks/useReqActor";
 import ActorItem from "../components/ActorItem/ActorItem";
 
-
 function FilmDetails() {
     const { filmId } = useParams();
     const { actorData } = useReqActor();
     const [filmData, setFilmData] = useState(null);
     const [activeTab, setActiveTab] = useState(0);
     console.log(filmData);
+
     useEffect(() => {
         async function fetchFilmData() {
           try {
