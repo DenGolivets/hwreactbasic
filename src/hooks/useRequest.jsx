@@ -6,7 +6,6 @@ function useRequest(search) {
     
     useEffect (() => {
         async function makeRequest() {
-            console.log(apiData);
             try {
                 if (search.length >= 3) {
                 const response = await axios.get(

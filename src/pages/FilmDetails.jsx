@@ -8,10 +8,8 @@ import ActorItem from "../components/ActorItem/ActorItem";
 
 function FilmDetails() {
     const { filmId } = useParams();
-    const { actorData } = useReqActor();
-    const [filmData, setFilmData] = useState(null);
+    const [filmData, setFilmData] = useState([]);
     const [activeTab, setActiveTab] = useState(0);
-    console.log(filmData);
 
     useEffect(() => {
         async function fetchFilmData() {
@@ -27,10 +25,6 @@ function FilmDetails() {
         }
         fetchFilmData();
       }, [filmId]);
-    
-      if (!filmData) {
-        return <div>Loading...</div>;
-      }
     
       const {
         name,
