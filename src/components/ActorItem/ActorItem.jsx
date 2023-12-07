@@ -109,18 +109,15 @@ function getCharacterNames(selectedActor, actorData) {
 }
 
 function ActorItem() {
-    const { actorData, loading, error } = useReqActor();
+    const { actorData } = useReqActor();
     const [offset, setOffset] = useState(0);
     const [isPrevButtonVisible, setIsPrevButtonVisible] = useState(false);
     const [selectedActor, setSelectedActor] = useState(null);
     const renderedActorIds = [];
 
-    React.useEffect(() => {
-        console.log("Actor Data:", actorData);
-      console.log("Loading:", loading);
-      console.log("Error:", error);
+    useEffect(() => {
       setIsPrevButtonVisible(offset > 0);
-    }, [actorData, loading, error, offset]);
+    }, [actorData, offset]);
 
     const handleMoveLeft = () => {
         setOffset((prevOffset) => {

@@ -155,7 +155,7 @@ function SingleItemTabs({ activeTab, handleChangeTab, summary, series }) {
                 </tr>
               </thead>
               <tbody>
-                {series.map(({ name, id, season, number, airdate, rating }) => (
+                {series && series.map(({ name, id, season, number, airdate, rating }) => (
                   <tr
                     key={id}
                     style={{
