@@ -133,7 +133,6 @@ function SingleItemTabs({ activeTab, handleChangeTab, summary, series }) {
                   style={{
                     textAlign: "left",
                     color: "white",
-                    fontSize: "25px",
                     backgroundColor: "rgb(40, 43,47)",
                     height: "3.5rem",
                     fontFamily: 'Staatliches',
@@ -155,7 +154,7 @@ function SingleItemTabs({ activeTab, handleChangeTab, summary, series }) {
                 </tr>
               </thead>
               <tbody>
-                {series && series.map(({ name, id, season, number, airdate, rating }) => (
+                {series?.map(({ name, id, season, number, airdate, rating }) => (
                   <tr
                     key={id}
                     style={{

@@ -1,9 +1,8 @@
 import React, { useEffect } from "react";
 import { Dialog, DialogContent, DialogActions, Button, Card, CardContent, CardMedia, Typography } from "@mui/material";
 import { DEFAULT_ACTOR_IMAGE } from "../../constans/constans";
-import { keyframes, styled } from "@mui/system";
+import { keyframes } from "@mui/system";
 import { motion } from "framer-motion";
-import useReqActor from "../../hooks/useReqActor";
 import WebFont from 'webfontloader';
 import './actorItem.css'
 
@@ -22,7 +21,6 @@ const pulse  = keyframes`
 `;
 
 const ActorModal = ({ actor, open, onClose, characterNames }) => {
-    const { actorData, loading, error } = useReqActor();
 
     useEffect(() => {
         WebFont.load({
@@ -43,7 +41,6 @@ const ActorModal = ({ actor, open, onClose, characterNames }) => {
             height: "70vh", 
             maxWidth: "none", 
             backgroundColor: '#191919',
-            boxShadow: "none",
             boxShadow: "0px 0px 20px 10px rgba(255, 0, 0, 0.5)",
             animation: `${pulse} 5.5s infinite`,
         },
@@ -82,12 +79,9 @@ const ActorModal = ({ actor, open, onClose, characterNames }) => {
             src={actor.person.image ? actor.person.image.medium || DEFAULT_ACTOR_IMAGE : DEFAULT_ACTOR_IMAGE}
             alt={actor.person.name}
             style={{
-            //   height: '300px',  
-            //   width: '250px',  
             width: "100%",
             height: "100%",
               objectFit: 'cover',  
-            //   margin: 'auto', 
             }}
           />
           </motion.div>

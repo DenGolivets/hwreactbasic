@@ -1,103 +1,11 @@
 import React, { useState, useEffect } from "react";
 import useReqActor from "../../hooks/useReqActor";
-import { Card, CardContent, CardMedia, Typography, Container, Grid, Button } from "@mui/material";
-import { styled, keyframes } from "@mui/system";
+import { CardContent, CardMedia, Typography, Container, Grid } from "@mui/material";
 import './actorItem.css';
 import { DEFAULT_ACTOR_IMAGE } from "../../constans/constans";
 import ActorModal from "./ActorModal";
 import WebFont from 'webfontloader';
-
-const blink = keyframes`
-    0%, 100% {
-    filter: drop-shadow(0px 0px 15px #FF0000);
-    }
-    50% {
-    filter: drop-shadow(0px 0px 15px transparent);
-    }
-`;
-
-const BlinkingCard = styled(Card)({
-    backgroundColor: "rgba(20, 20, 20)",
-    display: "flex",
-    alignItems: "center",
-    width: "445px",
-    minHeight: "200px",
-    marginRight: "1rem",
-    border: "none",
-    boxShadow: "none",
-    textDecoration: "none",
-    color: "inherit",
-    "&:hover": {
-        filter: "drop-shadow(0px 0px 15px #FF0000)",
-        animation: `${blink} 3.5s ease-in-out 3.5s infinite`,
-        cursor: "pointer",
-    },
-    transition: "transform 0.5s ease",
-});
-
-const flagWaveAnimation = keyframes`
-  0% {
-    transform: rotate(0deg);
-  }
-  25% {
-    transform: rotate(10deg);
-  }
-  50% {
-    transform: rotate(0deg);
-  }
-  75% {
-    transform: rotate(-10deg);
-  }
-  100% {
-    transform: rotate(0deg);
-  }
-`;
-
-
-const ButtonEffectRight = styled(Button)({
-    position: "relative",
-    overflow: "hidden",
-    "&:after": {
-        content: '""',
-        position: "absolute",
-        left: 0,
-        bottom: 0,
-        height: "600%",
-        width: "140%",
-        background: "#ffa300",
-        transition: "all .5s ease-in-out",
-        
-        transform: "translateX(65%) translateY(13%) rotate(48deg)",
-        "-webkit-transform": "translateX(65%) translateY(13%) rotate(48deg)",
-        "-webkit-transition": "all .5s ease-in-out",
-    },
-    "&:hover:after": {
-        transform: "translateX(65%) translateY(13%) rotate(45deg)",
-        "-webkit-transform": "translateX(-8%) translateY(13%) rotate(20deg)",
-    },
-});
-
-const ButtonEffectLeft = styled(Button)({
-    position: "relative",
-    overflow: "hidden",
-    "&:after": {
-        content: '""',
-        position: "absolute",
-        left: 0,
-        top: 0,
-        height: "490%",
-        width: "140%",
-        background: "#ffa300",
-        transition: "all .5s ease-in-out",
-        transform: "translateX(-98%) translateY(-25%) rotate(45deg)",
-        "-webkit-transform": "translateX(-98%) translateY(-25%) rotate(45deg)",
-        "-webkit-transition": "all .5s ease-in-out",
-    },
-    "&:hover:after": {
-        transform: "translateX(-9%) translateY(-25%) rotate(45deg)",
-        "-webkit-transform": "translateX(-9%) translateY(-25%) rotate(45deg)",
-    },
-});
+import { BlinkingCard, ButtonEffectRight, ButtonEffectLeft } from './styledActor'
 
 function getCharacterNames(selectedActor, actorData) {
   const duplicateActors = actorData.filter(
@@ -217,7 +125,7 @@ function ActorItem() {
                     <Typography
                       variant="body2"
                       color="text.secondary"
-                      style={{ color: "rgb(249, 249, 249)", border: "none", color: '#FF0C00' }}
+                      style={{ border: "none", color: '#FF0C00' }}
                     >
                       {actor.person.birthday}
                     </Typography>
@@ -237,13 +145,14 @@ function ActorItem() {
       });
     
       return (
-        
+        <>
+        {actorData.length > 0 && (
         <div style={{ width: "100%", height: '150px' }}>
-          {actorData.length > 0 && (
+          
           <span style={{ fontFamily: 'Staatliches' }} className="Txt_Starring">
             Starring
           </span>
-          )}
+          
           <Container
             style={{
               overflow: "hidden",
@@ -298,7 +207,6 @@ function ActorItem() {
                 backgroundColor: "#141414",
                 height: "50px",
                 marginRight: "20px",
-                marginLeft: "auto",
                 marginLeft: offset === 0 ? "auto" : "",
               }}
             >
@@ -323,6 +231,8 @@ function ActorItem() {
           </div>  
           )}
         </div>
+        )}
+        </>
       );
   }
     

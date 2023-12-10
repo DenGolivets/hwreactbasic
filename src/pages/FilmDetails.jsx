@@ -3,12 +3,12 @@ import { useParams } from "react-router-dom";
 import axios from "axios";
 import SingleItemHeader from "../components/SingleItemHeader/SingleItemHeader";
 import SingleItemTabs from "../components/SingleItemTabs/SingleItemTabs";
-import useReqActor from "../hooks/useReqActor";
 import ActorItem from "../components/ActorItem/ActorItem";
+
 
 function FilmDetails() {
     const { filmId } = useParams();
-    const [filmData, setFilmData] = useState([]);
+    const [filmData, setFilmData] = useState({});
     const [activeTab, setActiveTab] = useState(0);
 
     useEffect(() => {
@@ -25,7 +25,7 @@ function FilmDetails() {
         }
         fetchFilmData();
       }, [filmId]);
-    
+
       const {
         name,
         rating,
@@ -60,9 +60,7 @@ function FilmDetails() {
               summary={summary}
               series={series}
           />
-
           <ActorItem />
-
         </>
       );
     }
