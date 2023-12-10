@@ -7,8 +7,7 @@ import { setSearch } from "../store/SearchSlice";
 import { DEFAULT_IMAGE } from "../constans/constans";
 
 function Home() {
-    const [selectedFilm, setSelectedFilm] = useState(null);
-    // const [search, setSearch] = useState("");
+    const [setSelectedFilm] = useState(null);
     const apiSearch = useSelector((state) => state.search.search);
     const searchRef = useRef("");
     const dispatch = useDispatch();
@@ -32,7 +31,7 @@ function Home() {
                 justifyContent: 'center',
             }}        
             >
-              <input type='text' style={{
+            <input type='text' style={{
                 color: '#fff',
                 backgroundColor: 'rgba(209,208,207,.6)',
                 height: '30px',
@@ -42,7 +41,7 @@ function Home() {
               value={apiSearch} onChange={handleSearch} ref={searchRef} />
               </Grid>
               <Grid container spacing={2} sx={{ padding: "20px" }}>
-              {apiData.map(({ id, name, image }, index) => (
+              {apiData?.map(({ id, name, image }, index) => (
               <Grid item xs={3} key={index}>
               <SingleCard
               id={id}

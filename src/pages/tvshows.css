@@ -1,4 +1,4 @@
-.Txt_Starring {
+.popular_show_text {
     color: white;
     font-size: 28px;
     display: flex;
@@ -21,6 +21,7 @@
     --color3: red;
     --color4: rgb(56, 56, 56);
 }
+
 @keyframes flicker {
     50% {
         color: white;

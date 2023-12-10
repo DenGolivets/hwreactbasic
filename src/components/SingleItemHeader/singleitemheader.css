@@ -1,7 +1,7 @@
 .Main {
     display: flex;
     justify-content: space-between;
-    align-items: start;
+    align-items: flex-start;
     width: 100%;
     padding: 20px;
     flex-direction: row;
@@ -94,5 +94,4 @@
 .default-image-size {
     width: 250px;
     height: 350px;
-
 }

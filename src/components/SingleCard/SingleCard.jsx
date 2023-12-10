@@ -1,30 +1,24 @@
 import * as React from 'react';
 import Card from '@mui/material/Card';
-import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
-import Typography from '@mui/material/Typography';
 import CardActionArea from '@mui/material/CardActionArea';
-import { DEFAULT_IMAGE } from '../../constans/constans'
-import { Link, useParams, useHistory } from "react-router-dom";
-
-
+import { Link } from "react-router-dom";
 import './singleCard.css';
-import { style, width } from '@mui/system';
+
 
 export default function SingleCard({
     id,
     name, 
     image,
-    time,
-    onClick
+    premiered,
 }) {
-    const handleClick = (title) => {
-        console.log(`${title} clicked!`);
-    }
     return (
-    <Card sx={{ 
-        marginTop: "20px",
-        maxWidth: 345,
+    <Card 
+        sx={{ 
+        marginTop: "40px",
+        height: "370px", 
+        width: "260px",
+        marginBottom: '20px'
         }}
         className="card"
         >
@@ -33,15 +27,16 @@ export default function SingleCard({
             image={image}
             component="img"
             sx={{ 
-                height: "450px", 
-                width: "400px",
+                objectFit: "cover",
+                height: "370px", 
+                width: "260px",
                 position: "relative",
             }}
             className="cardMedia"
         />
         <div className='Absol'>
             <p className='name'>{name}</p>
-            <p className='time'>{time}</p>
+            <p className='time'>{premiered}</p>
         <Link
             to={`/show/${id}`}
             className="btn"

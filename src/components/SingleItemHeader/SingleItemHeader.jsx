@@ -1,83 +1,16 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import Rating from "@mui/material/Rating";
 import Typography from '@mui/material/Typography';
-import Box from '@mui/material/Box';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import { Grid, IconButton } from '@mui/material';
 import ShareIcon from '@mui/icons-material/Share';
 import AddIcon from '@mui/icons-material/Add';
-import VisibilityIcon from '@mui/icons-material/Visibility';
 import LocalOfferIcon from '@mui/icons-material/LocalOffer';
-import GoogleIcon from '@mui/icons-material/Google';
-import { styled } from '@mui/system';
 import WebFont from 'webfontloader';
 import './singleitemheader.css'
 import { DEFAULT_IMAGE } from '../../constans/constans';
-
-
-const StyledWhiteCircle = styled('div')({
-  width: '30px',
-  height: '30px',
-  borderRadius: '50%',
-  backgroundColor: '#fff',
-  // backgroundColor: 'rgba(53,58,58,1)',
-  display: 'flex',
-  alignItems: 'center',
-  justifyContent: 'center',
-  marginRight: '2px'
-  
-});
-
-const StyledGrayCircle = styled('div')({
-  width: '45px',
-  height: '45px',
-  borderRadius: '50%',
-  backgroundColor: 'rgba(53,58,58,1)',
-  display: 'flex',
-  alignItems: 'center',
-  justifyContent: 'center',
-  marginRight: '15px'
-});
-
-const StyledGraySquare = styled('div')({
-  width: '24px',
-  height: '24px',
-  backgroundColor: 'rgba(53,58,58,1)',
-  display: 'flex',
-  alignItems: 'center',
-  justifyContent: 'center',
-
-});
-
-const dot = (
-    <Box
-      component="span"
-      sx={{ display: 'inline-block', mx: '2px', transform: 'scale(0.8)' }}
-    >
-      •
-    </Box>
-  );
-
-  const eye = (
-    <Box
-    component="icon"
-    sx={{ display: 'inline-block', mx: '2px', transform: 'scale(0.6)', color: 'white' }}
-  >
-    <VisibilityIcon />
-  </Box>
-  )
-
-  const googleIcon = (
-    <Box
-    component="icon"
-    sx={{ display: 'inline-block', justifyContent: 'center', alignItems: 'center', mx: '2px', transform: 'scale(0.6)', color: 'white' }}
-  >
-    <GoogleIcon />
-  </Box>
-  )
-
-
-
+import { StyledWhiteCircle, StyledGrayCircle, StyledGraySquare } from './styledHeader'
+import { dot, eye, googleIcon } from './graphicHeader'
 
 function SingleItemHeader({ name, rating, genres, averageRuntime, premiered, image, views }) {
 
@@ -91,7 +24,6 @@ function SingleItemHeader({ name, rating, genres, averageRuntime, premiered, ima
 
     return (
       <>
-       {genres && genres.length > 0 && (
         <div
           className='Main'
         >
@@ -126,7 +58,7 @@ function SingleItemHeader({ name, rating, genres, averageRuntime, premiered, ima
             <p
             className='pos_genre_info'
             >
-              {genres[0]}
+              {genres ? genres[0] : ''} 
             </p></div>
             <div className='line_objects'>
             <p
@@ -135,7 +67,6 @@ function SingleItemHeader({ name, rating, genres, averageRuntime, premiered, ima
                 fontSize: "1em",
               }}
             >
-            
             <span 
             style={{ 
               display: 'inline-block', 
@@ -218,9 +149,6 @@ function SingleItemHeader({ name, rating, genres, averageRuntime, premiered, ima
               alt={name}
             />
           </div>
-
-
-
           <div style={{                 
                 display: 'flex',
                 position: 'absolute',
@@ -245,12 +173,11 @@ function SingleItemHeader({ name, rating, genres, averageRuntime, premiered, ima
               TAGS: 
             </Typography>
             <Typography variant="body2" sx={{fontWeight:'400', fontSize: '1em', marginTop: '40px'}} color="white">
-              {genres.join(', ')} 
+              {genres?.join(', ')} 
             </Typography>
         </Grid>
         </div>
         </div>
-        )}
         </>
 );
 }
