@@ -4,6 +4,8 @@ import Home from './pages/Home';
 import TvShows from './pages/TVShows';
 import NotFound from './pages/Not Found';
 import FilmDetails from './pages/FilmDetails';
+import Register from './pages/Auth/Register';
+import Auth from './layout/Auth';
 
 const router = createBrowserRouter([
   {
@@ -22,7 +24,22 @@ const router = createBrowserRouter([
       {
         path: "/tvshows",
         element: <TvShows />
-      }
+      },
+    ],
+  },
+  {
+    path: "auth/",
+    element: <Auth />,
+    errorElement: <NotFound />,
+    children: [
+      {
+        path: "register",
+        element: <Register />,
+      },
+      // {
+      //   path: "/show/:filmId",
+      //   element: <FilmDetails />,
+      // }
     ],
   },
 ]);
