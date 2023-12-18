@@ -11,8 +11,16 @@ import './singleitemheader.css'
 import { DEFAULT_IMAGE } from '../../constans/constans';
 import { StyledWhiteCircle, StyledGrayCircle, StyledGraySquare } from './styledHeader'
 import { dot, eye, googleIcon } from './graphicHeader'
+import { Navigate, useNavigate } from 'react-router-dom';
+import FilmGenreIcon from '../../img/FilmGenre.png'
 
 function SingleItemHeader({ name, rating, genres, averageRuntime, premiered, image, views }) {
+
+  const navigate  = useNavigate();
+
+  const handleGenreClick = (genre) => {
+    navigate(`/show/Genre/${genre}`);
+  }
 
       useEffect(() => {
         WebFont.load({
@@ -58,7 +66,12 @@ function SingleItemHeader({ name, rating, genres, averageRuntime, premiered, ima
             <p
             className='pos_genre_info'
             >
+              <a style={{textDecoration:'none'}} onClick={() => handleGenreClick(genres[0])} className='genreclick'>
+                <div style={{display: 'inline-block', verticalAlign: 'middle', marginRight: '20px' }}>
+              <img src={FilmGenreIcon} alt="Film Genre" style={{ width: '40px', height: '40px', }} />
+              </div>
               {genres ? genres[0] : ''} 
+              </a>
             </p></div>
             <div className='line_objects'>
             <p
@@ -172,9 +185,16 @@ function SingleItemHeader({ name, rating, genres, averageRuntime, premiered, ima
               }} color="white">
               TAGS: 
             </Typography>
-            <Typography variant="body2" sx={{fontWeight:'400', fontSize: '1em', marginTop: '40px'}} color="white">
-              {genres?.join(', ')} 
-            </Typography>
+            <Typography variant="body2" className='tagsgenre' sx={{ fontWeight: '400', fontSize: '1em', marginTop: '40px', color: 'white' }} >
+  {genres?.map((genre, index) => (
+    <React.Fragment key={index}>
+      {index > 0 && ', '}
+      <a style={{ textDecoration: 'none' }} onClick={() => handleGenreClick(genre)} className='tagsgenre_a'>
+        {genre}
+      </a>
+    </React.Fragment>
+  ))}
+</Typography>
         </Grid>
         </div>
         </div>

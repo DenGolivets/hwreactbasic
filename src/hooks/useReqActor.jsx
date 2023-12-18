@@ -5,6 +5,7 @@ import { useParams } from "react-router-dom";
 function useReqActor() {
   const { filmId } = useParams();
   const [actorData, setActorData] = useState([]);
+  const [selectedActorId, setSelectedActorId] = useState(null);
 
   useEffect(() => {
     async function makeRequest() {
@@ -19,7 +20,11 @@ function useReqActor() {
     makeRequest();
   }, [filmId]);
 
-  return { actorData };
+  const selectActor = (actorId) => {
+    setSelectedActorId(actorId);
+  };
+
+  return { actorData, selectActor, selectedActorId };
 }
 
 export default useReqActor;

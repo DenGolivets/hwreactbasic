@@ -1,0 +1,56 @@
+/* h1 {
+    color: #fff;
+    font-size: 3rem;
+  }
+  p {
+    color: #fff;
+    margin: 1rem;
+  }
+  
+  .footLink {
+    color: white;
+    margin-right: 1.5rem;
+    text-decoration: none;
+  }
+  
+  .footLink:hover {
+    color: blue;
+  }
+  .whiteNavLink {
+    color: white;
+  }
+  
+  .mySwiper {
+    width: 100%;
+    height: 500px;
+    padding: 0%;
+  }
+  
+  .swiper-slide {
+    text-align: center;
+    font-size: 18px;
+    background: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .swiper-slide img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  .slideCard {
+    max-width: 470px;
+    height: 220px;
+    position: relative;
+    transition: transform 1s, box-shadow 1s;
+    object-position: top;
+    border-radius: 0%;
+  }
+  
+  .slideFilmCard:hover {
+    transform: scale(1.01);
+    box-shadow: 15px 15px 18px rgba(73, 24, 24, 0.8);
+  } */
+
