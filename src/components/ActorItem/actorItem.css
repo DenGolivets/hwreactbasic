@@ -27,3 +27,23 @@
         filter: saturate(200%) hue-rotate(20deg);
     }
 }
+ 
+.Swipe {
+    width: 1000px;
+    height: 400px;
+   
+  }
+
+    
+    .sw_sl {
+      height: 300px;
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+    }
+    
+    .sw_sl img {
+      display: block;
+  
+      object-fit: cover;
+    }

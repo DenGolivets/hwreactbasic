@@ -95,3 +95,42 @@
     width: 250px;
     height: 350px;
 }
+
+.genreclick:hover {
+color:#FF0000;
+cursor: pointer;
+}
+
+.genreclick {
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+}
+
+.tagsgenre {
+    font-weight: 400;
+    font-size: 1em;
+    margin-top: 40px;
+    color: white;
+}
+
+.tagsgenre_a {
+    display: inline-block;
+    margin-right: 10px;
+    position: relative;
+  }
+  
+  .tagsgenre_a:hover::before {
+    content: "";
+    cursor: pointer;
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 2px;
+    background-color: red; /* Цвет при ховере */
+  }
+
+  .tagsgenre:hover {
+    cursor: pointer; /* Изменение вида курсора при наведении */
+  }

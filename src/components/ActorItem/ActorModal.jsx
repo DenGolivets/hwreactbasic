@@ -1,10 +1,26 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
+import axios from "axios";
+import { useParams } from "react-router";
+import { Link } from "react-router-dom";
+import { Swiper, SwiperSlide } from 'swiper/react';
+import { Pagination } from 'swiper/modules';
+import { Navigation } from "swiper/modules";
+import 'swiper/css';
+import 'swiper/css/pagination';
+import Stack from '@mui/material/Stack';
+import { Grid } from '@mui/material';
 import { Dialog, DialogContent, DialogActions, Button, Card, CardContent, CardMedia, Typography } from "@mui/material";
 import { DEFAULT_ACTOR_IMAGE } from "../../constans/constans";
 import { keyframes } from "@mui/system";
 import { motion } from "framer-motion";
 import WebFont from 'webfontloader';
 import './actorItem.css'
+import IconButton from '@mui/material/IconButton';
+import FacebookIcon from '@mui/icons-material/Facebook';
+import TwitterIcon from '@mui/icons-material/Twitter';
+import SlideCard from "../TitleSingleSlide/SlideCard";
+import { DEFAULT_IMAGE } from "../../constans/constans";
+
 
 
 const pulse  = keyframes`
@@ -20,7 +36,30 @@ const pulse  = keyframes`
 }
 `;
 
-const ActorModal = ({ actor, open, onClose, characterNames }) => {
+const ActorModal = ({ actor, open, movies, onClose, characterNames }) => {
+
+  
+  const [apiData, setApiData] = useState(null);
+  const { actorId } = useParams();
+
+
+
+  useEffect(() => {
+    async function makeRequest() {
+      try {
+        const response = await axios.get(
+          `https://dolphin-app-pc6ii.ondigitalocean.app/article/actor/${actorId}`
+        );
+        setApiData(response.data);
+      } catch (error) {
+        console.log(error);
+      }
+    }
+    if (actorId) {
+      makeRequest();
+    }
+  }, [actorId]);
+
 
     useEffect(() => {
         WebFont.load({
@@ -30,15 +69,16 @@ const ActorModal = ({ actor, open, onClose, characterNames }) => {
         });
       }, []);
 
+
   return (
     <Dialog 
     open={open} 
     onClose={onClose}
     PaperProps={{
         sx: {
-            width: "40vw", 
+            width: "100vw", 
             borderRadius: '10px',
-            height: "70vh", 
+            height: "100vh", 
             maxWidth: "none", 
             backgroundColor: '#191919',
             boxShadow: "0px 0px 20px 10px rgba(255, 0, 0, 0.5)",
@@ -52,7 +92,7 @@ const ActorModal = ({ actor, open, onClose, characterNames }) => {
     transition={{ duration: 0.6, delay: 0.2 }}
     >
       <DialogContent>
-        <Card
+        {/* <Card
         sx={{
             width: "100%",  
             height: "100%", 
@@ -130,7 +170,8 @@ const ActorModal = ({ actor, open, onClose, characterNames }) => {
             >
                 As: {characterNames}</Typography>
           </CardContent>
-        </Card>
+        </Card> */}
+        
       </DialogContent>
       <DialogActions>
         <Button onClick={onClose} color="primary" style={{ color: '#FF0C00', fontWeight: 'bold' }}>

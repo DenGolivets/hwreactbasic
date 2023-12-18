@@ -6,6 +6,8 @@ import NotFound from './pages/Not Found';
 import FilmDetails from './pages/FilmDetails';
 import Register from './pages/Auth/Register';
 import Auth from './layout/Auth';
+import ActorPage from './pages/ActorPage';
+import ShowsByGenre from './pages/ShowsByGenre';
 
 const router = createBrowserRouter([
   {
@@ -24,6 +26,13 @@ const router = createBrowserRouter([
       {
         path: "/tvshows",
         element: <TvShows />
+      },
+      {
+        path: "/actor/:actorId",
+        element: <ActorPage />,
+      },
+      {  path: '/show/Genre/:genres',
+        element: <ShowsByGenre/>
       },
     ],
   },

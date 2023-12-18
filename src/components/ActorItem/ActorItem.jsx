@@ -1,11 +1,27 @@
 import React, { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 import useReqActor from "../../hooks/useReqActor";
 import { CardContent, CardMedia, Typography, Container, Grid } from "@mui/material";
 import './actorItem.css';
+import { Swiper, SwiperSlide } from "swiper/react";
+import "swiper/css/navigation";
+import 'swiper/css/pagination';
+import "swiper/css";
 import { DEFAULT_ACTOR_IMAGE } from "../../constans/constans";
 import ActorModal from "./ActorModal";
 import WebFont from 'webfontloader';
 import { BlinkingCard, ButtonEffectRight, ButtonEffectLeft } from './styledActor'
+import { useLocation } from 'react-router-dom';
+
+function ScrollToTopOnPageChange() {
+  const { pathname } = useLocation();
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [pathname]);
+
+  return null;
+}
 
 function getCharacterNames(selectedActor, actorData) {
   const duplicateActors = actorData.filter(
@@ -16,8 +32,9 @@ function getCharacterNames(selectedActor, actorData) {
   return names.join(', ');
 }
 
+
 function ActorItem() {
-    const { actorData } = useReqActor();
+    const { actorData, selectActor, selectedActorId } = useReqActor();
     const [offset, setOffset] = useState(0);
     const [isPrevButtonVisible, setIsPrevButtonVisible] = useState(false);
     const [selectedActor, setSelectedActor] = useState(null);
@@ -43,9 +60,14 @@ function ActorItem() {
         });
       };
 
-      const handleCardClick  = (actor) => {
+      const handleCardClick = (actor) => {
+        selectActor(actor.person.id);
         setSelectedActor(actor);
       };
+
+      // const handleCardClick  = (actor) => {
+      //   setSelectedActor(actor);
+      // };
     
       const handleCloseModal = () => {
         setSelectedActor(null);
@@ -73,9 +95,14 @@ function ActorItem() {
         const characterNames = [actor.character.name, ...duplicateActors.map((a) => a.character.name)].join(', ');
     
         return (
-
+          <div style={{     
+            width: '100%',
+            height: '100%',
+            }}>
           <Grid item xs={6} key={actor.person.id}>
-            <BlinkingCard
+            <BlinkingCard 
+              component={Link}
+              to={`/actor/${actor.person.id}`}
               sx={{
                 transform: `translateX(-${offset * 100}%)`,
               }}
@@ -141,13 +168,16 @@ function ActorItem() {
               </CardContent>
             </BlinkingCard>
           </Grid>
+          </div>
         );
       });
-    
+      
       return (
         <>
+        
+        <ScrollToTopOnPageChange />
         {actorData.length > 0 && (
-        <div style={{ width: "100%", height: '150px' }}>
+        <div style={{ width: "100%", height: '100%', marginBottom: '20px', overflow: 'hidden' }}>
           
           <span style={{ fontFamily: 'Staatliches' }} className="Txt_Starring">
             Starring
@@ -171,7 +201,7 @@ function ActorItem() {
                 justifyContent: 'flex-start',
                 overflow: 'hidden',
                 position: 'absolute',
-                width: '1880px',
+                width: '95%',
                 left: '0',
                 right: '0',
                 marginLeft: '5px',
@@ -180,14 +210,15 @@ function ActorItem() {
               {actorCards}
             </Grid>
           </Container>
-          {selectedActor && (
+          {/* {selectedActor && (
             <ActorModal
               actor={selectedActor}
               characterNames={getCharacterNames(selectedActor, actorData)}
               open={Boolean(selectedActor)}
               onClose={handleCloseModal}
             />
-          )}
+          )} */}
+          
           {actorData.length > 0 && (
           <div
             style={{

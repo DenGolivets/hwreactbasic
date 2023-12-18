@@ -28,3 +28,97 @@
         filter: saturate(200%) hue-rotate(20deg);
     }
 }
+
+.content {
+    /* display: grid; */
+    /* grid-template-columns: 3fr 2fr; */
+    gap: 30px;
+    /* max-width: 90vw; */
+}
+
+.mySwiper {
+    width: 100%;
+    padding-top: 50px;
+    padding-bottom: 50px;
+  }
+  
+  .actionslide {
+    background-position: center;
+    background-size: cover;
+    width: 300px;
+    height: 300px;
+  }
+  
+  .actionslide img {
+    display: block;
+    width: 100%;
+  }
+
+  .mySwiper.initialized .actionslide {
+    transition: none !important;
+  }
+
+  .my-custom-bullet {
+    width:8px; /* Установите желаемую ширину квадратного буллета */
+    height: 8px; /* Установите желаемую высоту квадратного буллета */
+    display: inline-block;
+    background-color: transparent; /* Установите желаемый цвет фона */
+    opacity: 0.5; /* Установите желаемую непрозрачность */
+    margin-right: 8px; /* Регулируйте расстояние между буллетами */
+    cursor: pointer;
+    border-radius: 0;
+    border: 2px solid rgb(87, 85, 85);
+  }
+
+  .my-custom-bullet-active {
+    background-color: red;
+    opacity: 1;
+  }
+
+  .names_genre {
+    text-Align: center;
+    margin-top: 40px;
+    text-transform: uppercase;
+    color: white;
+    font-size: 38px;
+    --interval: 7s;
+    display: block;
+    text-shadow: 
+        0 0 1px var(--color1),
+        0 0 2px var(--color2),
+        0 0 4px var(--color3),
+        0 0 6px var(--color4);
+    will-change: filter, color;
+    filter: saturate(100%);
+    animation: flicker steps(100) var(--interval) 3s infinite;
+    color: lightpink;
+    --color1: rgb(185, 26, 53);
+    --color2: rgb(97, 12, 12);
+    --color3: red;
+    --color4: rgb(56, 56, 56);
+  }
+  @keyframes flicker {
+    50% {
+        color: white;
+        filter: saturate(200%) hue-rotate(20deg);
+    }
+}
+
+.active-slide {
+  border-radius: 10px;
+  background-color: #191919;
+  box-shadow: 0px 0px 20px 10px rgba(255, 0, 0, 0.5);
+  animation: pulse 5.5s infinite;
+}
+
+@keyframes pulse {
+  0% {
+      box-shadow: 0px 0px 20px 10px rgba(255, 0, 0, 0.5);
+  }
+  50% {
+      box-shadow: 0px 0px 20px 10px rgba(255, 0, 0, 0.2);
+  }
+  100% {
+      box-shadow: 0px 0px 20px 10px rgba(255, 0, 0, 0.5);
+  }
+}

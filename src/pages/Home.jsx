@@ -3,8 +3,9 @@ import useRequest from "../hooks/useRequest";
 import Grid from "@mui/material/Grid";
 import SingleCard from "../components/SingleCard/SingleCard";
 import { useDispatch, useSelector } from "react-redux";
-import { setSearch } from "../store/SearchSlice";
+import { action, setSearch } from "../store/SearchSlice";
 import { DEFAULT_IMAGE } from "../constans/constans";
+import './home.css'
 
 function Home() {
     const [setSelectedFilm] = useState(null);
@@ -12,6 +13,7 @@ function Home() {
     const searchRef = useRef("");
     const dispatch = useDispatch();
     const apiData = useRequest(apiSearch);
+
     useEffect (() => {
         searchRef.current.focus();
     }, [])
@@ -25,6 +27,11 @@ function Home() {
     }
         return (
             <>
+            <div style={{
+                width: '100%',
+                minHeight: '100vh',
+                height: '100%'
+            }}>
             <Grid container pt={5}
             sx={{
                 display: 'flex',
@@ -52,7 +59,8 @@ function Home() {
               </Grid>
               ))}
               </Grid>
-            </>
+              </div>
+              </>
         );
         }
     
