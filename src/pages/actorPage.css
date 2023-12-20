@@ -39,6 +39,17 @@
   transform: translateX(-59%) !important;
 }
 
+@media screen and (min-width: 2400px) {
+  .slider-controler .swiper-button-next {
+    right: 4.4% !important;
+    transform: translateX(-59%) !important;
+  }
+  .slider-controler .swiper-button-prev {
+    left: 1.9% !important;
+    transform: translateX(-59%) !important;
+  }
+}
+
 .slider-controler .slider-arrow {
   background: var(--red);
   width: 3.5rem;

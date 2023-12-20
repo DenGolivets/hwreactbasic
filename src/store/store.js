@@ -5,6 +5,6 @@ import AuthSlice from "./AuthSlice";
 export default configureStore ({
     reducer: {
         search: SearchSlice,
-        auth: AuthSlice
+        auth: AuthSlice,
     },
 });
