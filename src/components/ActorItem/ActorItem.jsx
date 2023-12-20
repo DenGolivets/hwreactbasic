@@ -23,14 +23,16 @@ function ScrollToTopOnPageChange() {
   return null;
 }
 
-function getCharacterNames(selectedActor, actorData) {
-  const duplicateActors = actorData.filter(
-    (a) => a.person.id === selectedActor.person.id && a.character.name !== selectedActor.character.name
-  );
+// function getCharacterNames(selectedActor, actorData) {
+//   const duplicateActors = actorData.filter(
+//     (a) => a.person.id === selectedActor.person.id && a.character.name !== selectedActor.character.name
+//   );
 
-  const names = [selectedActor.character.name, ...duplicateActors.map((a) => a.character.name)];
-  return names.join(', ');
-}
+//   const names = [selectedActor.character.name, ...duplicateActors.map((a) => a.character.name)];
+//   return names.join(', ');
+// }
+
+
 
 
 function ActorItem() {
@@ -92,7 +94,7 @@ function ActorItem() {
           (a) => a.person.id === actor.person.id && a.character.name !== actor.character.name
         );
     
-        const characterNames = [actor.character.name, ...duplicateActors.map((a) => a.character.name)].join(', ');
+        const characterNames = [actor.character.name, ...duplicateActors.map((a) => a.character.name)].slice(0, 4).join(', ');
     
         return (
           <div style={{     
@@ -104,7 +106,7 @@ function ActorItem() {
               component={Link}
               to={`/actor/${actor.person.id}`}
               sx={{
-                transform: `translateX(-${offset * 100}%)`,
+                transform: `translateX(-${offset * 100}vw)`,
               }}
               onClick={() => handleCardClick(actor)}
             >
@@ -159,7 +161,7 @@ function ActorItem() {
                     <Typography
                       variant="body2"
                       color="text.secondary"
-                      style={{ color: "rgb(249, 249, 249)", border: "none", marginTop: "10px" }}
+                      style={{ color: "rgb(249, 249, 249)", border: "none", marginTop: "10px", }}
                     >
                       As: {characterNames}
                     </Typography>
@@ -194,17 +196,21 @@ function ActorItem() {
           >
             <Grid
               container
-              spacing={2}
+              spacing={0}
               sx={{
                 display: 'flex',
                 flexWrap: 'nowrap',
                 justifyContent: 'flex-start',
                 overflow: 'hidden',
                 position: 'absolute',
-                width: '95%',
+                width: '98%',
                 left: '0',
                 right: '0',
-                marginLeft: '5px',
+                marginLeft: '15px',
+                '& > :not(:first-of-type)': {
+                  marginLeft: '20px',
+                },
+                
               }}
             >
               {actorCards}
@@ -225,6 +231,7 @@ function ActorItem() {
               display: "flex",
               justifyContent: "center",
               marginTop: "15rem",
+              
             }}
           >
             <ButtonEffectLeft

@@ -30,6 +30,7 @@ function ActorPage() {
     const { actorId } = useParams();
     const [actorInfo, setActorInfo] = useState([]);
 
+
     useEffect(() => {
         WebFont.load({
           google: {
@@ -49,10 +50,9 @@ function ActorPage() {
             console.error(error);
           }
         }
-    
         fetchActorData();
       }, [actorId]);
-
+    
     return (
         <>
         <div className="actor-page-container">
@@ -68,6 +68,11 @@ function ActorPage() {
                 <Grid item xs={12} sm={9}>
                     <div style={{ fontFamily: 'Staatliches' }}>
                         <h1 className="actor-name">{actorInfo.name}</h1>
+                    </div>
+                    <div>
+                        <Typography sx={{ color: 'white' }}>
+                            {actorInfo.summary}
+                        </Typography>
                     </div>
                     <div className="acting-in-container">
                         <Typography variant="h5" className="acting-in-title">

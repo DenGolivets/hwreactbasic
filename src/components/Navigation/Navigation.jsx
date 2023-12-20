@@ -16,7 +16,7 @@ import "./navigation.css"
 import logo from '../../img/logo.png'
 
 
-const pages = ['Home', 'TV Shows', 'About Us'];
+const pages = ['Home', 'TV Shows', 'Show Genres'];
 const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
 
 const textStyle = {

@@ -8,6 +8,7 @@ import Register from './pages/Auth/Register';
 import Auth from './layout/Auth';
 import ActorPage from './pages/ActorPage';
 import ShowsByGenre from './pages/ShowsByGenre';
+import ShowGenres from './pages/ShowGenres';
 
 const router = createBrowserRouter([
   {
@@ -33,6 +34,9 @@ const router = createBrowserRouter([
       },
       {  path: '/show/Genre/:genres',
         element: <ShowsByGenre/>
+      },
+      {  path: '/showgenres',
+      element: <ShowGenres/>
       },
     ],
   },

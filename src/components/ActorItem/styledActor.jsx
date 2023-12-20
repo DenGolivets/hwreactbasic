@@ -12,6 +12,7 @@ const blink = keyframes`
 `;
 
 const BlinkingCard = styled(Card)({
+    boxSizing: "border-box",
     backgroundColor: "rgba(20, 20, 20)",
     display: "flex",
     alignItems: "center",

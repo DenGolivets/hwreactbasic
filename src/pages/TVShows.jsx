@@ -8,6 +8,7 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import { Autoplay, Pagination, EffectCoverflow } from 'swiper/modules';
 import Button from '@mui/material/Button';
 import WebFont from 'webfontloader';
+import BackBanner from '../img/bannerbackground.jpg'
 import 'swiper/css';
 import 'swiper/css/pagination';
 import 'swiper/css/navigation';
@@ -71,8 +72,11 @@ function TvShows() {
 
   return (
     <>
-        <Grid container item xs={12}>
-                    <Grid item xs={12} style={{marginTop: '100px' }}>
+        <Grid container item xs={12} sx={{
+                  background: `url(${BackBanner}) center/contain`,
+                  backgroundSize: "contain",
+        }}>
+                    <Grid item xs={12} style={{marginTop: '30px' }}>
                     <Typography 
                     variant="h3"
                     style={{ fontFamily: 'Staatliches' }}
@@ -210,7 +214,7 @@ function TvShows() {
               </div>
           </Grid>
                   
-          <Grid item xs={12} style={{marginTop: '100px' }}>
+          <Grid item xs={12} style={{marginBottom: '50px', marginTop: '50px' }}>
                     <Typography 
                     variant="h3"
                     style={{ fontFamily: 'Staatliches' }}

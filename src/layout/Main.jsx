@@ -8,8 +8,17 @@ import TitleSingleSlide from "../components/TitleSingleSlide/TitleSingleSlide";
 
 function Main () {
     const location = useLocation();
+
+    const mainContainerStyle = {
+        display: 'flex',
+        flexDirection: 'column',
+        height: location.pathname === '/' ? '100vh' : 'auto',
+        minHeight: '100vh',
+    };
+
     return (
-        <div className="App" style={{ display: 'flex', flexDirection: 'column', minHeight: '100vh'}}>
+        <div className="App" style={mainContainerStyle}>
+ 
             <Navigation/>
             <Grid container style={{ flex: 1 }}>
                 <Outlet/>
