@@ -10,7 +10,7 @@ export const MENU = [
         link: 'tvshows'
     },
     {
-        name: 'show genres',
-        link: 'showgenres'
+        name: 'favorites',
+        link: 'favorites'
     }
 ]

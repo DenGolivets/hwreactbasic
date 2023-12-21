@@ -6,17 +6,50 @@ import { useDispatch, useSelector } from "react-redux";
 import { action, setSearch } from "../store/SearchSlice";
 import { DEFAULT_IMAGE } from "../constans/constans";
 import BackBanner from '../img/bannerbackground.jpg';
-import Button from '@mui/material/Button';
+import { Button } from '@mui/material';
 import ButtonGroup from '@mui/material/ButtonGroup';
 import Typography from '@mui/material/Typography';
+import { styled } from '@mui/system';
+import Hero from '../img/hero.png';
+import { IconButton } from '@mui/material';
+import FavoriteIcon from '@mui/icons-material/Favorite';
 import './home.css'
 
+const StyledButton = styled(Button)({
+    backgroundColor: 'red',
+    color: 'white',
+    borderRadius: '5px',
+    '&:hover': {
+      backgroundColor: 'black',
+      color: 'red',
+      cursor: 'pointer',
+    },
+  });
+
+  const HeroImage = styled('img')({
+    position: 'absolute',
+    top: '0',
+    left: '1070px',
+    width: '90px',
+    height: '90px',
+
+    zIndex: '1', 
+  });
+
+    
+
 function Home() {
+
+    const [favorites, setFavorites] = useState([]);
     const [setSelectedFilm] = useState(null);
     const apiSearch = useSelector((state) => state.search.search);
     const searchRef = useRef("");
     const dispatch = useDispatch();
     const apiData = useRequest(apiSearch);
+
+    const addToFavorites = (movie) => {
+        setFavorites((prevFavorites) => [...prevFavorites, movie]);
+    };
 
     const [currentPage, setCurrentPage] = useState(1);
 
@@ -73,6 +106,9 @@ function Home() {
                 marginLeft: '50px',
               }}
               value={apiSearch} onChange={handleSearch} ref={searchRef} />
+              <div style={{ left: '60px' }}>
+              <HeroImage src={Hero} alt="Hero" style={{ }} />
+              </div>
               </Grid>
               {visibleData.length > 0 && (
               <Grid container spacing={2} sx={{ padding: "20px" }} className="film-container">
@@ -83,6 +119,7 @@ function Home() {
               name={name}
               image={image ? image.medium || DEFAULT_IMAGE : DEFAULT_IMAGE}
               onClick={handleCardClick}
+              onAddToFavorites={addToFavorites}
               />
               </Grid>
               ))}
@@ -92,21 +129,15 @@ function Home() {
               {visibleData.length > 0 && (
               <div className="button-container">
                 <ButtonGroup>
-                    <Button onClick={goToPrevPage} disabled={currentPage === 1} variant="contained" disableElevation style={{
-                        backgroundColor: 'red', 
-                        color: 'white'
-                    }}>
+                    <StyledButton onClick={goToPrevPage} disabled={currentPage === 1} variant="contained" disableElevation>
                     Previous
-                    </Button>
-                    <Button disabled style={{ margin: '0 10px', color: 'white', fontWeight: 'bold' }}>
+                    </StyledButton>
+                    <Button disabled style={{ margin: '0 10px', backgroundColor: 'rgba(0, 0, 0, 0.2)' ,color: 'white', fontWeight: 'bold', border: '1px solid red', borderRadius: '6px' }}>
                         {`Page ${currentPage} of ${totalPages}`}
                     </Button>
-                    <Button onClick={goToNextPage} disabled={currentPage === totalPages} variant="contained" disableElevation style={{
-                        backgroundColor: 'red', 
-                        color: 'white'
-                    }}>
+                    <StyledButton onClick={goToNextPage} disabled={currentPage === totalPages} variant="contained" disableElevation>
                     Next
-                    </Button>
+                    </StyledButton>
                 </ButtonGroup>
                 </div>
                 )}

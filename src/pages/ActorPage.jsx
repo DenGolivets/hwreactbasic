@@ -13,7 +13,7 @@ import FacebookIcon from '@mui/icons-material/Facebook';
 import TwitterIcon from '@mui/icons-material/Twitter';
 import Stack from '@mui/material/Stack';
 import WebFont from 'webfontloader';
-import { DEFAULT_IMAGE } from "../constans/constans";
+import { DEFAULT_IMAGE, DEFAULT_ACTOR_IMAGE } from "../constans/constans";
 import './actorPage.css';
 
 function ScrollToTopOnPageChange() {
@@ -60,7 +60,7 @@ function ActorPage() {
             <Grid container spacing={3}>
                 <Grid item xs={12} sm={3}>
                     <img 
-                        src={actorInfo.image ? actorInfo.image.medium || DEFAULT_IMAGE : DEFAULT_IMAGE} 
+                        src={actorInfo.image ? actorInfo.image.medium || DEFAULT_ACTOR_IMAGE : DEFAULT_ACTOR_IMAGE} 
                         alt={actorInfo.name} 
                         className="actor-image"
                     />
@@ -98,7 +98,7 @@ function ActorPage() {
                                     <SwiperSlide key={index} className="slideeffect" style={{ height: '50%'}}>
                                         {cast.image && cast.image.original && (
                                             <a  href={`/show/${cast.id}`}>
-                                                <img src={cast.image.medium} alt={`Cast ${index + 1}`} />
+                                                <img src={cast.image.medium || DEFAULT_IMAGE} alt={`Cast ${index + 1}`} />
                                             </a>
                                         )}
                                     </SwiperSlide>

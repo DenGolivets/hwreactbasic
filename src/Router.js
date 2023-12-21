@@ -1,3 +1,4 @@
+import React, { useState } from 'react';
 import Main from './layout/Main';
 import { createBrowserRouter } from "react-router-dom";
 import Home from './pages/Home';
@@ -8,7 +9,8 @@ import Register from './pages/Auth/Register';
 import Auth from './layout/Auth';
 import ActorPage from './pages/ActorPage';
 import ShowsByGenre from './pages/ShowsByGenre';
-import ShowGenres from './pages/ShowGenres';
+import Favorites from './pages/Favorites';
+
 
 const router = createBrowserRouter([
   {
@@ -35,8 +37,8 @@ const router = createBrowserRouter([
       {  path: '/show/Genre/:genres',
         element: <ShowsByGenre/>
       },
-      {  path: '/showgenres',
-      element: <ShowGenres/>
+      {  path: '/favorites',
+      element: <Favorites />
       },
     ],
   },

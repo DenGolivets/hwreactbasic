@@ -45,8 +45,6 @@
     height: 40px;
 }
 
-
-
 .graysquare-hover:hover {
     color: rgb(253, 4, 4);
     box-shadow: 0 0 5px rgb(253, 4, 4);
