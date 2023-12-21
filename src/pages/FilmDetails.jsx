@@ -5,7 +5,6 @@ import SingleItemHeader from "../components/SingleItemHeader/SingleItemHeader";
 import SingleItemTabs from "../components/SingleItemTabs/SingleItemTabs";
 import ActorItem from "../components/ActorItem/ActorItem";
 
-
 function FilmDetails() {
     const { filmId } = useParams();
     const [filmData, setFilmData] = useState({});

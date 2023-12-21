@@ -1,0 +1,85 @@
+.mainfav {
+    width: 100%;
+    min-height: 100vh;
+    height: 100%;
+    overflow: hidden;
+    position: relative;
+}
+
+.card-container {
+    padding: "10px";
+}
+
+.names_genre {
+    text-align: center;
+    margin-top: 40px;
+    text-transform: uppercase;
+    color: white;
+    font-size: 38px;
+  }
+  
+  .names_genre .heart {
+    cursor: pointer;
+    position: relative;
+    display: inline-block;
+    width: 1.5rem; 
+    height: 1.5rem;
+    background-color: transparent;
+  }
+  
+  .names_genre .heart svg {
+    width: 100%;
+    height: 100%;
+  }
+  
+  .names_genre .heart path {
+    fill: red;
+    transition: fill 0.3s ease-in-out;
+  }
+  
+  .names_genre .heart:hover .hammer {
+    opacity: 1;
+  }
+  
+  .names_genre .heart.clicked .hammer {
+    animation: hammerAnimation 0.3s ease-in-out;
+  }
+
+  .names_genre .heart.clicked .hammer {
+    animation: hammerClickAnimation 0.5s ease-in-out;
+  }
+  
+  .names_genre .hammer {
+    position: absolute;
+    top: 0; 
+    left: 25px;
+    transform: translateX(-50%);
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out;
+    font-size: 1.2rem;
+  }
+  
+  @keyframes hammerAnimation {
+    0% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-5px);
+    }
+    100% {
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes hammerClickAnimation {
+    0% {
+      transform: translateY(0) scale(1);
+    }
+    50% {
+      transform: translateY(-15px) scale(1.5);
+    }
+    100% {
+      transform: translateY(0) scale(1);
+    }
+  }
+  

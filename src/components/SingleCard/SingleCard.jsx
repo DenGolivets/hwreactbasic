@@ -3,6 +3,11 @@ import Card from '@mui/material/Card';
 import CardMedia from '@mui/material/CardMedia';
 import CardActionArea from '@mui/material/CardActionArea';
 import { Link } from "react-router-dom";
+import { IconButton } from '@mui/material';
+import FavoriteIcon from '@mui/icons-material/Favorite';
+import { useDispatch, useSelector } from 'react-redux';
+import { addToFavorites } from '../../store/FavoritesSlice';
+import { removeFromFavorites } from '../../store/FavoritesSlice';
 import './singleCard.css';
 
 
@@ -12,17 +17,36 @@ export default function SingleCard({
     image,
     premiered,
 }) {
+
+    const dispatch = useDispatch();
+    const favorites = useSelector((state) => state.favorites);
+    const isFavorite = favorites.some((movie) => movie.id === id);
+    
+    const handleAddToFavorites = () => {
+        if (isFavorite) {
+            dispatch(removeFromFavorites({ id }));
+        } else {
+            dispatch(addToFavorites({
+                id,
+                name,
+                image,
+                premiered,
+            }));
+        }
+    };
+
     return (
+        <div className='homemain'>
     <Card 
         sx={{ 
         marginTop: "40px",
         height: "370px", 
         width: "260px",
-        marginBottom: '20px'
+        marginBottom: '20px',
         }}
         className="card"
         >
-    <CardActionArea>
+            <div className='mediamain'>
         <CardMedia
             image={image}
             component="img"
@@ -31,20 +55,37 @@ export default function SingleCard({
                 height: "370px", 
                 width: "260px",
                 position: "relative",
+
             }}
             className="cardMedia"
         />
+        </div>
         <div className='Absol'>
-            <p className='name'>{name}</p>
-            <p className='time'>{premiered}</p>
+            {/* <p className='name'>{name}</p>
+            <p className='time'>{premiered}</p> */}
         <Link
             to={`/show/${id}`}
             className="btn"
         >  
             Show More
         </Link>
+        <div className='mainfavorite'>
+        <IconButton onClick={handleAddToFavorites} 
+        className='iconbutton'
+        style={{
+            color: isFavorite ? 'red' : 'black',
+            background: 'rgba(0, 0, 0, 0.1)',
+            transition: 'background 0.3s'
+        }}
+        >
+            <FavoriteIcon className='favoriteIcon' style={{
+            color: isFavorite ? 'red' : 'black',
+        }} />
+        </IconButton>
         </div>
-    </CardActionArea>
+        </div>
+    {/* </CardActionArea> */}
     </Card>
+    </div>
   );
 }

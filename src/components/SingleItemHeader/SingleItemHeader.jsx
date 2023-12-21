@@ -14,21 +14,7 @@ import { dot, eye, googleIcon } from './graphicHeader'
 import { Navigate, useNavigate } from 'react-router-dom';
 import FilmGenreIcon from '../../img/FilmGenre.png'
 
-
-
 function SingleItemHeader({ name, rating, genres, averageRuntime, premiered, image, views }) {
-
-  const gradientOverlayStyle = {
-    content: '""',
-    position: 'absolute',
-    top: 0,
-    left: 0,
-    right: 0,
-    bottom: 0,
-    zIndex: 1,
-    backgroundImage: `linear-gradient(to right, rgba(31.5, 31.5, 52.5, 1) calc((50vw - 170px) - 340px), rgba(31.5, 31.5, 52.5, 0.84) 50%, rgba(31.5, 31.5, 52.5, 0.84) 100%)`,
-    pointerEvents: 'none', // Чтобы псевдоэлемент не перехватывал события мыши
-  };
 
   const navigate  = useNavigate();
 
@@ -156,9 +142,9 @@ function SingleItemHeader({ name, rating, genres, averageRuntime, premiered, ima
             </StyledGrayCircle>
             <StyledGrayCircle className='graycircle-hover'>
             <StyledWhiteCircle>
-            <IconButton aria-label="share" >
+            <IconButton aria-label="share">
                 <FavoriteIcon 
-                className='iconhover' 
+                className='iconhovershare' 
                 sx={{ color: 'red', width: '15px' 
                 }} 
                 />
