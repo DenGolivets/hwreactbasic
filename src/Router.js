@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import Main from './layout/Main';
 import { createBrowserRouter } from "react-router-dom";
 import Home from './pages/Home';
@@ -58,6 +58,5 @@ const router = createBrowserRouter([
     ],
   },
 ]);
-
 
 export default router;

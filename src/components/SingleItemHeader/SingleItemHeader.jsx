@@ -13,10 +13,31 @@ import { StyledWhiteCircle, StyledGrayCircle, StyledGraySquare } from './styledH
 import { dot, eye, googleIcon } from './graphicHeader'
 import { Navigate, useNavigate } from 'react-router-dom';
 import FilmGenreIcon from '../../img/FilmGenre.png'
+import { useDispatch, useSelector } from 'react-redux';
+import { addToFavorites } from '../../store/FavoritesSlice';
+import { removeFromFavorites } from '../../store/FavoritesSlice';
 
-function SingleItemHeader({ name, rating, genres, averageRuntime, premiered, image, views }) {
+function SingleItemHeader({ id, name, rating, genres, averageRuntime, premiered, image, views }) {
 
   const navigate  = useNavigate();
+  const dispatch = useDispatch();
+
+  // const favorites = useSelector((state) => state.favorites.movies);
+  // const isFavorite = favorites.some((movie) => movie.id === id);
+  
+
+//   const handleAddToFavorites = () => {
+//     if (isFavorite) {
+//         dispatch(removeFromFavorites({ id }));
+//     } else {
+//         dispatch(addToFavorites({
+//             id,
+//             image,
+//         }));
+//     }
+// };
+
+
 
   const handleGenreClick = (genre) => {
     navigate(`/show/Genre/${genre}`);
@@ -142,11 +163,14 @@ function SingleItemHeader({ name, rating, genres, averageRuntime, premiered, ima
             </StyledGrayCircle>
             <StyledGrayCircle className='graycircle-hover'>
             <StyledWhiteCircle>
-            <IconButton aria-label="share">
+            <IconButton aria-label="share" 
+            // onClick={handleAddToFavorites}
+            >
                 <FavoriteIcon 
                 className='iconhovershare' 
-                sx={{ color: 'red', width: '15px' 
-                }} 
+                sx={{ color: 'red', width: '15px', 
+                // color: isFavorite ? 'red' : 'black' 
+              }} 
                 />
             </IconButton>
             </StyledWhiteCircle>

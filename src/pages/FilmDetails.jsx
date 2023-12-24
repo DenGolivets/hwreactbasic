@@ -9,6 +9,15 @@ function FilmDetails() {
     const { filmId } = useParams();
     const [filmData, setFilmData] = useState({});
     const [activeTab, setActiveTab] = useState(0);
+    // const [favorites, setFavorites] = useState([]);
+
+//     const addToFavorites = (movie) => {
+//       setFavorites((prevFavorites) => [...prevFavorites, movie]);
+//   };
+
+//   const handleCardClick = (id) => {
+//     setFilmData(id)
+// };
 
     useEffect(() => {
         async function fetchFilmData() {
@@ -26,6 +35,7 @@ function FilmDetails() {
       }, [filmId]);
 
       const {
+        id,
         name,
         rating,
         genres,
@@ -34,7 +44,7 @@ function FilmDetails() {
         image,
         series,
         summary,
-        views,
+        views
       } = filmData;
     
       const handleChangeTab = (event, newValue) => {
@@ -44,6 +54,7 @@ function FilmDetails() {
       return (
         <>
           <SingleItemHeader
+              id={id}
               name={name}
               rating={rating}
               genres={genres}
@@ -51,6 +62,10 @@ function FilmDetails() {
               premiered={premiered}
               image={image}
               views={views}
+              // onClick={handleCardClick}
+              // onAddToFavorites={addToFavorites}
+              // onClick={() => handleCardClick(id)}
+              // onAddToFavorites={() => addToFavorites({ id, name, image })}
           />
             <SingleItemTabs
               activeTab={activeTab}

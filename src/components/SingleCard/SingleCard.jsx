@@ -19,7 +19,7 @@ export default function SingleCard({
 }) {
 
     const dispatch = useDispatch();
-    const favorites = useSelector((state) => state.favorites);
+    const favorites = useSelector((state) => state.favorites.movies);
     const isFavorite = favorites.some((movie) => movie.id === id);
     
     const handleAddToFavorites = () => {

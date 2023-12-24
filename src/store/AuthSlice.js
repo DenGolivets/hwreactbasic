@@ -1,5 +1,4 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { action } from "./SearchSlice";
 import axios from "axios";
 
 const token = localStorage.getItem('token');

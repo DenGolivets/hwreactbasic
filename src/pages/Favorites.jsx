@@ -28,7 +28,7 @@ function Favorites() {
 
     const navigate = useNavigate();
     const location = useLocation();
-    const favorites = useSelector((state) => state.favorites);
+    const favorites = useSelector((state) => state.favorites.movies);
     const itemsPerPage = 8;
     const [isHeartClicked, setIsHeartClicked] = React.useState(false);
 

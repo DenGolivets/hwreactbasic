@@ -10,10 +10,10 @@ import { Button } from '@mui/material';
 import ButtonGroup from '@mui/material/ButtonGroup';
 import Typography from '@mui/material/Typography';
 import { styled } from '@mui/system';
-import Hero from '../img/hero.png';
 import { IconButton } from '@mui/material';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import './home.css'
+
 
 const StyledButton = styled(Button)({
     backgroundColor: 'red',
@@ -85,6 +85,7 @@ function Home() {
     }
         return (
             <>
+            
             <div style={{
                 background: `url(${BackBanner}) center/cover no-repeat`,
                 backgroundSize: "cover",
@@ -106,9 +107,6 @@ function Home() {
                 marginLeft: '50px',
               }}
               value={apiSearch} onChange={handleSearch} ref={searchRef} />
-              <div style={{ left: '60px' }}>
-              <HeroImage src={Hero} alt="Hero" style={{ }} />
-              </div>
               </Grid>
               {visibleData.length > 0 && (
               <Grid container spacing={2} sx={{ padding: "20px" }} className="film-container">
@@ -118,8 +116,10 @@ function Home() {
               id={id}
               name={name}
               image={image ? image.medium || DEFAULT_IMAGE : DEFAULT_IMAGE}
-              onClick={handleCardClick}
-              onAddToFavorites={addToFavorites}
+            //   onClick={handleCardClick}
+            //   onAddToFavorites={addToFavorites}
+              onClick={() => handleCardClick(id)}
+              onAddToFavorites={() => addToFavorites({ id, name, image })}
               />
               </Grid>
               ))}

@@ -2,13 +2,13 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const FavoritesSlice = createSlice({
     name: "favorites",
-    initialState: [],
+    initialState: { movies: [] },
     reducers: {
         addToFavorites: (state, action) => {
-            state.push(action.payload);
+            state.movies.push(action.payload);
         },
         removeFromFavorites: (state, action) => {
-            return state.filter((item) => item.id !== action.payload.id);
+            state.movies = state.movies.filter((item) => item.id !== action.payload.id);
         },
 
     },
