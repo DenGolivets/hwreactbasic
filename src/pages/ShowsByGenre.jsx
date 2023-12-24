@@ -1,4 +1,6 @@
+import React, { useEffect, useState, useRef } from "react";
 import { Grid } from "@mui/material";
+import { useDispatch, useSelector } from "react-redux";
 import SingleCard from '../components/SingleCard/SingleCard'
 import useReqGenre from "../hooks/useReqGenre";
 import { useParams } from "react-router-dom";
@@ -7,7 +9,7 @@ import { useParams } from "react-router-dom";
 function ShowsByGenre () {
     const { genres } = useParams();
     const genresFilms = useReqGenre(`https://dolphin-app-pc6ii.ondigitalocean.app/article/byGenre/${genres}`);
-    
+
     return(
         <div style={{
             width: '100%',
@@ -25,7 +27,7 @@ function ShowsByGenre () {
                         <SingleCard
                         id={show.id} 
                         name={show.name} 
-                        image={show.image.medium}>   
+                        image={show.image.medium}>
                         </SingleCard>
                 </Grid>
                 ))}

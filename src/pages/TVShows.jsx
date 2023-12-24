@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
 import Grid from "@mui/material/Grid";
+import { useDispatch, useSelector } from "react-redux";
 import { DEFAULT_IMAGE } from '../constans/constans'
 import './tvshows.css'
 import useReqGenre from "../hooks/useReqGenre";
@@ -9,6 +10,8 @@ import { Autoplay, Pagination, EffectCoverflow } from 'swiper/modules';
 import Button from '@mui/material/Button';
 import WebFont from 'webfontloader';
 import BackBanner from '../img/bannerbackground.jpg'
+import { motion } from "framer-motion";
+import { useInView } from 'react-intersection-observer';
 import 'swiper/css';
 import 'swiper/css/pagination';
 import 'swiper/css/navigation';
@@ -31,6 +34,11 @@ function TvShows() {
     setGenres(genre);
     setShowAll(false);
   };
+
+  const [fantasyRef, fantasyInView] = useInView({
+    triggerOnce: true,
+    rootMargin: '-50px 0px',
+  });
 
   useEffect(() => {
     if (actionSwiperRef.current && actionSwiperRef.current.swiper) {
@@ -77,6 +85,11 @@ function TvShows() {
                   backgroundSize: "contain",
         }}>
                     <Grid item xs={12} style={{marginTop: '30px' }}>
+                    <motion.div
+                      initial={{ opacity: 0, x: -1000 }}
+                      animate={{ opacity: 1, x: 0 }}
+                      transition={{ duration: 1.5, delay: 1 }}
+                    >
                     <Typography 
                     variant="h3"
                     style={{ fontFamily: 'Staatliches' }}
@@ -84,6 +97,7 @@ function TvShows() {
                     >
                       Action Shows
                       </Typography>
+                    </motion.div>
                       <Grid container sx={{display:'flex', justifyContent:'center', alignItems:'center' }}>
                         <a style={{textDecoration:'none'}} href={`/show/Genre/${genres}`}>
                         <Button onClick={() => handleButtonClick('Action')} variant="text" style={{color: 'red', backgroundColor: 'rgb(87, 85, 85)'}}>
@@ -145,7 +159,12 @@ function TvShows() {
               </div>
           </Grid>
 
-          <Grid item xs={12} style={{marginTop: '100px' }}>
+          <Grid item xs={12} style={{marginTop: '100px', overflowX: 'hidden' }}>
+                    <motion.div
+                      initial={{ opacity: 0, x: 1000 }}
+                      animate={{ opacity: 1, x: 0 }}
+                      transition={{ duration: 1.5, delay: 1.5 }}
+                    >
                     <Typography 
                     variant="h3"
                     style={{ fontFamily: 'Staatliches' }}
@@ -153,6 +172,7 @@ function TvShows() {
                     >
                       Comedy Shows
                       </Typography>
+                      </motion.div>
                       <Grid container sx={{display:'flex', justifyContent:'center', alignItems:'center' }}>
                         <a style={{textDecoration:'none'}} href={`/show/Genre/${genres}`}>
                         <Button onClick={() => handleButtonClick('Comedy')} variant="text" style={{color: 'red', backgroundColor: 'rgb(87, 85, 85)'}}>
@@ -214,7 +234,14 @@ function TvShows() {
               </div>
           </Grid>
                   
-          <Grid item xs={12} style={{marginBottom: '50px', marginTop: '50px' }}>
+          
+          <Grid item xs={12} style={{marginBottom: '50px', marginTop: '50px', overflowX: 'hidden' }}>
+            <div ref={fantasyRef}>
+                    <motion.div
+                      initial={{ opacity: 0, x: -1000 }}
+                      animate={{ opacity: fantasyInView ? 1 : 0, x: fantasyInView ? 0 : -1000 }}
+                      transition={{ duration: 1.5, delay: 0.5 }}
+                    >
                     <Typography 
                     variant="h3"
                     style={{ fontFamily: 'Staatliches' }}
@@ -222,6 +249,8 @@ function TvShows() {
                     >
                       Fantasy Shows
                       </Typography>
+                      </motion.div>
+                      </div>
                       <Grid container sx={{display:'flex', justifyContent:'center', alignItems:'center' }}>
                         <a style={{textDecoration:'none'}} href={`/show/Genre/${genres}`}>
                         <Button onClick={() => handleButtonClick('Fantasy')} variant="text" style={{color: 'red', backgroundColor: 'rgb(87, 85, 85)'}}>

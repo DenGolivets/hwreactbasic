@@ -1,0 +1,229 @@
+/* @font-face {
+    font-family: 'WIZARDRY';
+    src: local('Luminari'), url('c:\\Users\\Terra4Beat\\AppData\\Local\\Microsoft\\Windows\\Fonts\\WIZARDRY.TTF') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'My Favourite Horror';
+    src: local('Luminari'), url('c:\\Users\\Terra4Beat\\AppData\\Local\\Microsoft\\Windows\\Fonts\\My Favourite Horror.otf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+} */
+
+.header_swipe_container {
+    width: 100%;
+    overflow: hidden;
+}
+
+.slider-image {
+    min-width: 100%;
+    height: 220px;
+    object-fit: cover;
+}
+
+.img_slider1 {
+    width: 100%;
+    object-fit: cover;
+}
+.img_slider2 {
+    width: 100%;
+    object-fit: cover;
+}
+.img_slider3 {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: top;
+}
+.img_slider4 {
+    width: 100%;
+    height: 100%;
+    object-position: center;
+    object-fit: cover;
+}
+.img_slider5 {
+    width: 100%;
+    object-fit: cover;
+}
+.img_slider6 {
+    width: 100%;
+    object-fit: cover;
+}
+.img_slider7 {
+    width: 100%;
+    object-fit: cover;
+}
+
+/* .caption {
+    position: absolute;
+    text-transform: uppercase;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 5rem;
+    font-weight: bold;
+    color: rgba(236, 16, 16, 0.705);
+    text-shadow: 2px 4px 8px rgba(0, 0, 0, 0.8);
+    transition: color 0.3s ease-in-out, text-shadow 0.3s ease-in-out;
+    padding: 10px;
+}
+
+.caption:hover {
+    color: rgba(141, 31, 11, 0.781);
+    text-shadow: 0 0 3px rgba(8, 8, 8, 0.925);
+} */
+
+.caption {
+    position: absolute;
+    text-transform: uppercase;
+    top: 50%;
+    left: 47%;
+    transform: translate(-50%, -50%);
+    margin-left: 50px;
+    font-size: 5rem;
+    font-weight: bold;
+    color: rgba(247, 4, 4, 0.938);
+    text-shadow: 2px 4px 8px rgba(0, 0, 0, 0.8);
+    transition: transform 0.7s ease-in-out;
+    padding: 10px;
+    transform-origin: center center;
+}
+
+.caption:hover {
+    transform: perspective(500px) rotateX(-40deg) scale(0.9) translate(-50%, -50%);
+    text-shadow: 0 0 10px rgba(3, 3, 216, 0.425);
+    cursor: pointer;
+}
+
+.caption2 {
+    position: absolute;
+    text-transform: uppercase;
+    top: 50%;
+    left: 10%;
+    transform: translate(-50%, -50%);
+    margin-left: 50px;
+    font-size: 4rem;
+    font-weight: bold;
+    color: rgba(247, 4, 4, 0.938);
+    text-shadow: 2px 2px 6px rgba(48, 46, 46, 0.7);
+    transition: transform 0.7s ease-in-out;
+    padding: 10px;
+    transform-origin: center center;
+}
+
+.caption2:hover {
+    transform: perspective(500px) rotateX(-40deg) scale(0.9) translate(-50%, -50%);
+    text-shadow: 0 0 10px rgba(3, 3, 216, 0.63);
+    cursor: pointer;
+}
+
+.caption3 {
+    position: absolute;
+    text-transform: uppercase;
+    top: 50%;
+    left: 40%;
+    transform: translate(-50%, -50%);
+    margin-left: 50px;
+    font-size: 5rem;
+    font-weight: bold;
+    color: rgba(247, 4, 4, 0.938);
+    text-shadow: 4px 6px 10px rgba(0, 0, 0, 1);
+    transition: transform 0.7s ease-in-out;
+    padding: 10px;
+    transform-origin: center center;
+}
+
+.caption3:hover {
+    transform: perspective(500px) rotateX(-40deg) scale(0.9) translate(-50%, -50%);
+    text-shadow: 0 0 10px rgba(252, 2, 2, 0.6);
+    cursor: pointer;
+}
+
+.caption4 {
+    position: absolute;
+    text-transform: uppercase;
+    top: 70%;
+    left: 5%;
+    transform: translate(-50%, -50%);
+    margin-left: 50px;
+    font-size: 5rem;
+    font-weight: bold;
+    color: rgba(247, 4, 4, 0.938);
+    text-shadow: 4px 6px 10px rgba(0, 0, 0, 1);
+    transition: transform 0.7s ease-in-out;
+    padding: 10px;
+    transform-origin: center center;
+}
+
+.caption4:hover {
+    transform: perspective(500px) rotateX(-40deg) scale(0.9) translate(-50%, -50%);
+    text-shadow: 0 0 10px rgba(5, 112, 235, 0.6);
+    cursor: pointer;
+}
+
+.caption5 {
+    position: absolute;
+    text-transform: uppercase;
+    top: 170%;
+    left: 20%;
+    transform: translate(-50%, -50%);
+    margin-left: 50px;
+    font-size: 5rem;
+    font-weight: bold;
+    color: rgba(247, 4, 4, 0.938);
+    text-shadow: 4px 6px 10px rgba(168, 165, 165, 0.3);
+    transition: transform 0.7s ease-in-out;
+    padding: 10px;
+    transform-origin: center center;
+}
+
+.caption5:hover {
+    transform: perspective(500px) rotateX(-40deg) scale(0.9) translate(-50%, -50%);
+    text-shadow: 0 0 10px rgba(253, 253, 253, 0.4);
+    cursor: pointer;
+}
+
+.caption6 {
+    position: absolute;
+    text-transform: uppercase;
+    top: 50%;
+    left: 35%;
+    transform: translate(-50%, -50%);
+    margin-left: 50px;
+    font-size: 5rem;
+    font-weight: bold;
+    color: rgba(247, 4, 4, 0.938);
+    text-shadow: 4px 6px 10px rgba(0, 0, 0, 1);
+    transition: transform 0.7s ease-in-out;
+    padding: 10px;
+    transform-origin: center center;
+}
+
+.caption6:hover {
+    transform: perspective(500px) rotateX(-40deg) scale(0.9) translate(-50%, -50%);
+    text-shadow: 0 0 10px rgba(252, 2, 2, 0.6);
+    cursor: pointer;
+}
+
+.caption7 {
+    position: absolute;
+    text-transform: uppercase;
+    top: 50%;
+    left: 55%;
+    transform: translate(-50%, -50%);
+    margin-left: 50px;
+    font-size: 5rem;
+    font-weight: bold;
+    color: rgba(247, 4, 4, 0.938);
+    text-shadow: 4px 6px 10px rgba(0, 0, 0, 1);
+    transition: transform 0.7s ease-in-out;
+    padding: 10px;
+    transform-origin: center center;
+}
+
+.caption7:hover {
+    transform: perspective(500px) rotateX(-40deg) scale(0.9) translate(-50%, -50%);
+    text-shadow: 0 0 10px rgba(252, 2, 2, 0.6);
+    cursor: pointer;
+}
