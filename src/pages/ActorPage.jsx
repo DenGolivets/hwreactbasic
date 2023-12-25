@@ -14,21 +14,29 @@ import TwitterIcon from '@mui/icons-material/Twitter';
 import Stack from '@mui/material/Stack';
 import WebFont from 'webfontloader';
 import { DEFAULT_IMAGE, DEFAULT_ACTOR_IMAGE } from "../constans/constans";
+import { useNavigate } from 'react-router-dom';
 import './actorPage.css';
 
 function ScrollToTopOnPageChange() {
+
     const { pathname } = useLocation();
   
     useEffect(() => {
       window.scrollTo(0, 0);
     }, [pathname]);
-  
+
     return null;
 }
 
 function ActorPage() {
+
     const { actorId } = useParams();
     const [actorInfo, setActorInfo] = useState([]);
+    const navigate = useNavigate();
+
+    const handleGenreClick = (castId) => {
+        navigate(`/show/${castId}`);
+    };
 
 
     useEffect(() => {
@@ -95,11 +103,9 @@ function ActorPage() {
                                 style={{ width: '100%', height: '200px' }}
                             >
                                 {actorInfo.casts?.map((cast, index) =>  (
-                                    <SwiperSlide key={index} className="slideeffect" style={{ height: '50%'}}>
+                                    <SwiperSlide key={index} className="slideeffect" style={{ height: '50%'}} onClick={() => handleGenreClick(cast.id)}>
                                         {cast.image && cast.image.original && (
-                                            <a  href={`/show/${cast.id}`}>
                                                 <img src={cast.image.medium || DEFAULT_IMAGE} alt={`Cast ${index + 1}`} />
-                                            </a>
                                         )}
                                     </SwiperSlide>
                                 ))}
