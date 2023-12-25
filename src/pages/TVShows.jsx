@@ -44,8 +44,7 @@ function TvShows() {
   };
 
   const handleButtonClick = (genre) => {
-    setGenres(genre);
-    setShowAll(false);
+    navigate(`/show/Genre/${genre}`);
   };
 
   const [fantasyRef, fantasyInView] = useInView({
@@ -139,11 +138,9 @@ function TvShows() {
                       </Typography>
                     </motion.div>
                       <Grid container sx={{display:'flex', justifyContent:'center', alignItems:'center' }}>
-                        <a style={{textDecoration:'none'}} href={`/show/Genre/${genres}`}>
                         <Button onClick={() => handleButtonClick('Action')} variant="text" style={{color: 'red', backgroundColor: 'rgb(87, 85, 85)'}}>
                           Show all
                           </Button>
-                        </a>
                         </Grid>
                     <div className="content">
                     <Grid container >
@@ -209,11 +206,9 @@ function TvShows() {
                       </Typography>
                       </motion.div>
                       <Grid container sx={{display:'flex', justifyContent:'center', alignItems:'center' }}>
-                        <a style={{textDecoration:'none'}} href={`/show/Genre/${genres}`}>
                         <Button onClick={() => handleButtonClick('Comedy')} variant="text" style={{color: 'red', backgroundColor: 'rgb(87, 85, 85)'}}>
                           Show all
                           </Button>
-                        </a>
                         </Grid>
                     <div className="content">
                     <Grid container >
@@ -287,11 +282,9 @@ function TvShows() {
                       </motion.div>
                       </div>
                       <Grid container sx={{display:'flex', justifyContent:'center', alignItems:'center' }}>
-                        <a style={{textDecoration:'none'}} href={`/show/Genre/${genres}`}>
                         <Button onClick={() => handleButtonClick('Fantasy')} variant="text" style={{color: 'red', backgroundColor: 'rgb(87, 85, 85)'}}>
                           Show all
                           </Button>
-                        </a>
                         </Grid>
                     <div className="content">
                     <Grid container >
