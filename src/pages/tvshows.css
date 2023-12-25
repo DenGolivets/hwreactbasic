@@ -119,3 +119,7 @@
       box-shadow: 0px 0px 20px 10px rgba(255, 0, 0, 0.5);
   }
 }
+
+.actionslide:hover {
+  cursor: pointer;
+}

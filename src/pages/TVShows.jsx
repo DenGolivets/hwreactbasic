@@ -39,6 +39,10 @@ function TvShows() {
     boxShadow: "0px 4px 8px rgba(0, 0, 0, 0.55)",
   }));
 
+  const handleSwiperSlideClick = (showId) => {
+    navigate(`/show/${showId}`);
+  };
+
   const handleShowMoreGenres = () => {
     navigate('/show/Genre/all'); 
   };
@@ -169,20 +173,16 @@ function TvShows() {
                       ? 
                       actionFilms.map((show, index) => (
                       <Grid item xs={3} key={index}>
-                        <SwiperSlide className="actionslide">
-                        <a href={`/show/${show.id}`}>
+                        <SwiperSlide className="actionslide" onClick={() => handleSwiperSlideClick(show.id)}>
                     <img src={show.image.original || DEFAULT_IMAGE} />
-                        </a>
                       </SwiperSlide>
                       </Grid>
                         ))
                       : 
                       actionFilms.slice(0, 8).map((show, index) => (
                       <Grid item xs={3} key={index}>
-                      <SwiperSlide className="actionslide">
-                        <a href={`/show/${show.id}`}>
+                      <SwiperSlide className="actionslide" onClick={() => handleSwiperSlideClick(show.id)}>
                         <img src={show.image.original} />
-                        </a>
                     </SwiperSlide>
                     </Grid>
                     ))}
@@ -226,12 +226,7 @@ function TvShows() {
                       depth: 100,
                       modifier: 2.5,
                       }}
-                      // freeMode={true}
                       style={{height:'450px', marginRight: '30px', marginLeft: '30px' }}
-                      // autoplay={{
-                      //   delay: 2800,
-                      //   disableOnInteraction: false,
-                      // }}
                       speed={1500}
                       pagination={{clickable: true, bulletClass: 'my-custom-bullet', bulletActiveClass: 'my-custom-bullet-active' }}
                       modules={[EffectCoverflow, Pagination ]}
@@ -242,20 +237,16 @@ function TvShows() {
                       ? 
                       comedyFilms.map((show, index) => (
                       <Grid item xs={3} key={index}>
-                        <SwiperSlide className="actionslide">
-                        <a href={`/show/${show.id}`}>
+                        <SwiperSlide className="actionslide" onClick={() => handleSwiperSlideClick(show.id)}>
                     <img src={show.image.original} />
-                        </a>
                       </SwiperSlide>
                       </Grid>
                         ))
                       : 
                       comedyFilms.slice(0, 8).map((show, index) => (
                       <Grid item xs={3} key={index}>
-                      <SwiperSlide className="actionslide">
-                        <a href={`/show/${show.id}`}>
+                      <SwiperSlide className="actionslide" onClick={() => handleSwiperSlideClick(show.id)}>
                         <img src={show.image.original} />
-                        </a>
                     </SwiperSlide>
                     </Grid>
                     ))}
@@ -302,12 +293,7 @@ function TvShows() {
                       depth: 100,
                       modifier: 2.5,
                       }}
-                      // freeMode={true}
                       style={{height:'450px', marginRight: '30px', marginLeft: '30px' }}
-                      // autoplay={{
-                      //   delay: 2800,
-                      //   disableOnInteraction: false,
-                      // }}
                       speed={1500}
                       pagination={{clickable: true, bulletClass: 'my-custom-bullet', bulletActiveClass: 'my-custom-bullet-active' }}
                       modules={[EffectCoverflow, Pagination ]}
@@ -318,20 +304,16 @@ function TvShows() {
                       ? 
                       fantasyFilms.map((show, index) => (
                       <Grid item xs={3} key={index}>
-                        <SwiperSlide className="actionslide">
-                        <a href={`/show/${show.id}`}>
+                        <SwiperSlide className="actionslide" onClick={() => handleSwiperSlideClick(show.id)}>
                     <img src={show.image.original} />
-                        </a>
                       </SwiperSlide>
                       </Grid>
                         ))
                       : 
                       fantasyFilms.slice(0, 8).map((show, index) => (
                       <Grid item xs={3} key={index}>
-                      <SwiperSlide className="actionslide">
-                        <a href={`/show/${show.id}`}>
+                      <SwiperSlide className="actionslide" onClick={() => handleSwiperSlideClick(show.id)}>
                         <img src={show.image.original} />
-                        </a>
                     </SwiperSlide>
                     </Grid>
                     ))}
