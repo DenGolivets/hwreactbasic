@@ -11,33 +11,15 @@ import './singleitemheader.css'
 import { DEFAULT_IMAGE } from '../../constans/constans';
 import { StyledWhiteCircle, StyledGrayCircle, StyledGraySquare } from './styledHeader'
 import { dot, eye, googleIcon } from './graphicHeader'
-import { Navigate, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import FilmGenreIcon from '../../img/FilmGenre.png'
-import { useDispatch, useSelector } from 'react-redux';
-import { addToFavorites } from '../../store/FavoritesSlice';
-import { removeFromFavorites } from '../../store/FavoritesSlice';
+import { useDispatch } from 'react-redux';
+
 
 function SingleItemHeader({ id, name, rating, genres, averageRuntime, premiered, image, views }) {
 
   const navigate  = useNavigate();
   const dispatch = useDispatch();
-
-  // const favorites = useSelector((state) => state.favorites.movies);
-  // const isFavorite = favorites.some((movie) => movie.id === id);
-  
-
-//   const handleAddToFavorites = () => {
-//     if (isFavorite) {
-//         dispatch(removeFromFavorites({ id }));
-//     } else {
-//         dispatch(addToFavorites({
-//             id,
-//             image,
-//         }));
-//     }
-// };
-
-
 
   const handleGenreClick = (genre) => {
     navigate(`/show/Genre/${genre}`);

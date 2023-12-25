@@ -9,15 +9,6 @@ function FilmDetails() {
     const { filmId } = useParams();
     const [filmData, setFilmData] = useState({});
     const [activeTab, setActiveTab] = useState(0);
-    // const [favorites, setFavorites] = useState([]);
-
-//     const addToFavorites = (movie) => {
-//       setFavorites((prevFavorites) => [...prevFavorites, movie]);
-//   };
-
-//   const handleCardClick = (id) => {
-//     setFilmData(id)
-// };
 
     useEffect(() => {
         async function fetchFilmData() {

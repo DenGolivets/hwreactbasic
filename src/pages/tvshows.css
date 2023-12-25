@@ -30,10 +30,7 @@
 }
 
 .content {
-    /* display: grid; */
-    /* grid-template-columns: 3fr 2fr; */
     gap: 30px;
-    /* max-width: 90vw; */
 }
 
 .mySwiper {
@@ -59,12 +56,12 @@
   }
 
   .my-custom-bullet {
-    width:8px; /* Установите желаемую ширину квадратного буллета */
-    height: 8px; /* Установите желаемую высоту квадратного буллета */
+    width:8px; 
+    height: 8px; 
     display: inline-block;
-    background-color: transparent; /* Установите желаемый цвет фона */
-    opacity: 0.5; /* Установите желаемую непрозрачность */
-    margin-right: 8px; /* Регулируйте расстояние между буллетами */
+    background-color: transparent; 
+    opacity: 0.5; 
+    margin-right: 8px; 
     cursor: pointer;
     border-radius: 0;
     border: 2px solid rgb(87, 85, 85);

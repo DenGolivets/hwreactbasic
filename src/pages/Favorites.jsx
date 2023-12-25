@@ -8,6 +8,7 @@ import WebFont from 'webfontloader';
 import AddIcon from '@mui/icons-material/Add';
 import { Link } from 'react-router-dom';
 import { useNavigate, useLocation } from 'react-router-dom';
+import BackBanner from '../img/0661302.jpg';
 import { Button } from '@mui/material';
 import ButtonGroup from '@mui/material/ButtonGroup';
 import { styled } from '@mui/system';
@@ -89,7 +90,14 @@ function Favorites() {
     };
 
     return (
-        <div className={`mainfav ${isHeartClicked ? 'clicked' : ''}`}>
+        <div className={`mainfav ${isHeartClicked ? 'clicked' : ''}`}
+        style={{
+            background: `linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url(${BackBanner}) center/cover no-repeat`,
+            backgroundSize: "cover",
+            backgroundRepeat: "no-repeat",
+            height: '100%',
+        }}
+        >
             <Typography 
                 variant="h3"
                 style={{ fontFamily: 'Staatliches', marginTop: '30px', position: 'relative' }}
