@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Pagination, Autoplay  } from "swiper/modules";
+import { useNavigate } from 'react-router-dom';
 import WebFont from 'webfontloader';
 import 'swiper/css';
 import 'swiper/css/pagination';
@@ -40,8 +41,10 @@ const overlayStyle2 = {
 
 function HeaderSlider () {
 
+    const navigate = useNavigate();
+
     const handleGenreClick = (genre) => {
-        window.location.href = `/show/Genre/${genre}`;
+        navigate('/show/Genre/${genre}');
     };
 
     useEffect(() => {
