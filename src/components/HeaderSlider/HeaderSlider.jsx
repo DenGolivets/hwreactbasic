@@ -44,7 +44,7 @@ function HeaderSlider () {
     const navigate = useNavigate();
 
     const handleGenreClick = (genre) => {
-        navigate('/show/Genre/${genre}');
+        navigate(`/show/Genre/${genre}`);
     };
 
     useEffect(() => {
