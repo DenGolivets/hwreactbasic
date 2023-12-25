@@ -1,7 +1,6 @@
 import * as React from 'react';
 import Card from '@mui/material/Card';
 import CardMedia from '@mui/material/CardMedia';
-import CardActionArea from '@mui/material/CardActionArea';
 import { Link } from "react-router-dom";
 import { IconButton } from '@mui/material';
 import FavoriteIcon from '@mui/icons-material/Favorite';
@@ -61,8 +60,6 @@ export default function SingleCard({
         />
         </div>
         <div className='Absol'>
-            {/* <p className='name'>{name}</p>
-            <p className='time'>{premiered}</p> */}
         <Link
             to={`/show/${id}`}
             className="btn"

@@ -1,21 +1,23 @@
 import React, { useState, useEffect, useRef } from "react";
+import { useNavigate } from 'react-router-dom';
 import Grid from "@mui/material/Grid";
-import { useDispatch, useSelector } from "react-redux";
 import { DEFAULT_IMAGE } from '../constans/constans'
 import './tvshows.css'
 import useReqGenre from "../hooks/useReqGenre";
 import { Typography } from "@mui/material";
 import { Swiper, SwiperSlide } from 'swiper/react';
-import { Autoplay, Pagination, EffectCoverflow } from 'swiper/modules';
-import Button from '@mui/material/Button';
+import { Pagination, EffectCoverflow } from 'swiper/modules';
 import WebFont from 'webfontloader';
-import BackBanner from '../img/bannerbackground.jpg'
+import BackBanner from '../img/8284344.jpg';
 import { motion } from "framer-motion";
 import { useInView } from 'react-intersection-observer';
+import { Button } from "@mui/material";
+import { useSpring, animated } from "react-spring";
 import 'swiper/css';
 import 'swiper/css/pagination';
 import 'swiper/css/navigation';
 
+const AnimatedButton = animated(Button);
 
 function TvShows() {
   const actionFilms = useReqGenre('https://dolphin-app-pc6ii.ondigitalocean.app/article/byGenre/Action');
@@ -29,6 +31,17 @@ function TvShows() {
   const comedySwiperRef = useRef(null);
   const fantasySwiperRef = useRef(null);
   const [showAll, setShowAll] = useState(false);
+  const navigate = useNavigate();
+  
+  const [style, set] = useSpring(() => ({
+    backgroundColor: "red",
+    border: "2px solid black",
+    boxShadow: "0px 4px 8px rgba(0, 0, 0, 0.55)",
+  }));
+
+  const handleShowMoreGenres = () => {
+    navigate('/show/Genre/all'); 
+  };
 
   const handleButtonClick = (genre) => {
     setGenres(genre);
@@ -79,12 +92,39 @@ function TvShows() {
       }, []);
 
   return (
-    <>
+    <>      
         <Grid container item xs={12} sx={{
-                  background: `url(${BackBanner}) center/contain`,
-                  backgroundSize: "contain",
+                background: `linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.4)), url(${BackBanner}) top/cover no-repeat`,
+                backgroundSize: "cover",
+                backgroundRepeat: "no-repeat",
+                height: '100%',
         }}>
-                    <Grid item xs={12} style={{marginTop: '30px' }}>
+          <div style={{  }}>
+          <AnimatedButton 
+            onClick={handleShowMoreGenres} 
+            style={style} sx={{ 
+            display: 'flex', 
+            justifyContent: 'center', 
+            alignItems: 'center',
+            position: 'absolute',
+            left: '50%', 
+            transform: 'translateX(-50%)',
+            color: 'white',
+            marginTop: '10px',
+            '&:hover': {  
+              scale: '1.1',
+              transition: 'ease 2s ease-in-out',
+              '@media screen and (max-width: 2400px)': {
+                left: '50% !important',
+                transform: 'translateX(-40%)',
+              },            
+            },
+            }}
+            >
+              Show More Genres
+          </AnimatedButton>
+          </div>
+                    <Grid item xs={12} style={{marginTop: '70px' }}>
                     <motion.div
                       initial={{ opacity: 0, x: -1000 }}
                       animate={{ opacity: 1, x: 0 }}
@@ -121,12 +161,7 @@ function TvShows() {
                       depth: 100,
                       modifier: 2.5,
                       }}
-                      // freeMode={true}
                       style={{height:'450px', marginRight: '30px', marginLeft: '30px' }}
-                      // autoplay={{
-                      //   delay: 2800,
-                      //   disableOnInteraction: false,
-                      // }}
                       speed={1500}
                       pagination={{clickable: true, bulletClass: 'my-custom-bullet', bulletActiveClass: 'my-custom-bullet-active' }}
                       modules={[EffectCoverflow, Pagination ]}

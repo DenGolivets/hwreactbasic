@@ -127,9 +127,9 @@ cursor: pointer;
     right: 0;
     bottom: 0;
     height: 2px;
-    background-color: red; /* Цвет при ховере */
+    background-color: red; 
   }
 
   .tagsgenre:hover {
-    cursor: pointer; /* Изменение вида курсора при наведении */
+    cursor: pointer; 
   }

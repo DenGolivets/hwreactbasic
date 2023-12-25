@@ -23,18 +23,6 @@ function ScrollToTopOnPageChange() {
   return null;
 }
 
-// function getCharacterNames(selectedActor, actorData) {
-//   const duplicateActors = actorData.filter(
-//     (a) => a.person.id === selectedActor.person.id && a.character.name !== selectedActor.character.name
-//   );
-
-//   const names = [selectedActor.character.name, ...duplicateActors.map((a) => a.character.name)];
-//   return names.join(', ');
-// }
-
-
-
-
 function ActorItem() {
     const { actorData, selectActor, selectedActorId } = useReqActor();
     const [offset, setOffset] = useState(0);
@@ -66,10 +54,6 @@ function ActorItem() {
         selectActor(actor.person.id);
         setSelectedActor(actor);
       };
-
-      // const handleCardClick  = (actor) => {
-      //   setSelectedActor(actor);
-      // };
     
       const handleCloseModal = () => {
         setSelectedActor(null);
@@ -97,7 +81,7 @@ function ActorItem() {
         const characterNames = [actor.character.name, ...duplicateActors.map((a) => a.character.name)].slice(0, 4).join(', ');
     
         return (
-          <div style={{     
+          <div key={actor.id} style={{     
             width: '100%',
             height: '100%',
             }}>

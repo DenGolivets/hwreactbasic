@@ -1,16 +1,3 @@
-/* @font-face {
-    font-family: 'WIZARDRY';
-    src: local('Luminari'), url('c:\\Users\\Terra4Beat\\AppData\\Local\\Microsoft\\Windows\\Fonts\\WIZARDRY.TTF') format('truetype');
-    font-weight: normal;
-    font-style: normal;
-}
-@font-face {
-    font-family: 'My Favourite Horror';
-    src: local('Luminari'), url('c:\\Users\\Terra4Beat\\AppData\\Local\\Microsoft\\Windows\\Fonts\\My Favourite Horror.otf') format('truetype');
-    font-weight: normal;
-    font-style: normal;
-} */
-
 .header_swipe_container {
     width: 100%;
     overflow: hidden;
