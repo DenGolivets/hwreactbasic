@@ -1,6 +1,11 @@
 import { useEffect, useState, useRef } from "react";
 import useRequest from "../hooks/useRequest";
 import Grid from "@mui/material/Grid";
+import { Swiper, SwiperSlide } from 'swiper/react';
+import { Navigation } from "swiper/modules";
+import 'swiper/css';
+import 'swiper/css/bundle';
+import 'swiper/less/navigation';
 import SingleCard from "../components/SingleCard/SingleCard";
 import { useDispatch, useSelector } from "react-redux";
 import { action, setSearch } from "../store/SearchSlice";
@@ -12,7 +17,7 @@ import Typography from '@mui/material/Typography';
 import { styled } from '@mui/system';
 import './home.css'
 import VideoPlayer from "../components/VideoPlayer/VideoPlayer";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import WebFont from 'webfontloader';
 import TextField from '@mui/material/TextField';
 
@@ -66,23 +71,33 @@ function Home() {
     const [favorites, setFavorites] = useState([]);
     const [selectedFilm, setSelectedFilm] = useState(null);
     const apiSearch = useSelector((state) => state.search.search);
-    const [apiSearchError, setApiSearchError] = useState(false);
+    // const [apiSearchError, setApiSearchError] = useState(false);
     const searchRef = useRef("");
     const dispatch = useDispatch();
     const apiData = useRequest(apiSearch);
     const [popoverOpen, setPopoverOpen] = useState(false);
     const [currentVideoIndex, setCurrentVideoIndex] = useState(0);
-    const [playlist, setPlaylist] = useState([
+    const [playlist] = useState([
         "https://www.youtube.com/watch?v=XJMuhwVlca4&ab_channel=WarnerBros.Pictures",
         "https://www.youtube.com/watch?v=4cSkHPW-MPE&ab_channel=WarnerBros.Pictures",
+        "https://www.youtube.com/watch?v=nMvM0ohWNwA&ab_channel=KHStudio",
+        "https://www.youtube.com/watch?v=6xRbYYX5JeM&ab_channel=DarthTrailer",
+        "https://www.youtube.com/watch?v=5tocOfgFEes&ab_channel=ScreenCulture",
     ]);
+    const [swiperVisible, setSwiperVisible] = useState(false)
+
+    useEffect(() => {
+        const timer = setTimeout(() => {
+          setSwiperVisible(true);
+        }, 2500);
+        return () => clearTimeout(timer);
+      }, []);
+
     const handleVideoEnd = () => {
         setCurrentVideoIndex((prevIndex) =>
           prevIndex === playlist.length - 1 ? 0 : prevIndex + 1
         );
       };
-
-
 
     const addToFavorites = (movie) => {
         setFavorites((prevFavorites) => [...prevFavorites, movie]);
@@ -96,6 +111,16 @@ function Home() {
     const startIndex = (currentPage - 1) * itemsPerPage;
     const endIndex = startIndex + itemsPerPage;
     const visibleData = apiData.slice(startIndex, endIndex);
+
+    const getMarginTop = () => {
+        const screenWidth = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
+      
+        if (screenWidth >= 2400) {
+          return '400px';
+        } else {
+          return '150px';
+        }
+      };
 
     const goToNextPage = () => {
         if (currentPage < totalPages) {
@@ -180,7 +205,7 @@ function Home() {
                         >
                             Need more letters
                         </Typography>
-                    )}
+                )}
               </Grid>
               {visibleData?.length > 0 ? (
               <Grid container spacing={2} sx={{ padding: "20px" }} className="film-container">
@@ -204,8 +229,9 @@ function Home() {
                         justifyContent: 'center',
                         alignItems: 'center',
                         flexDirection: 'column',
-                        marginTop: '100px'
-                    }}>
+                        marginTop: getMarginTop()
+
+                    }}> 
                         <motion.div
                             initial={{ opacity: 0, x: -1000 }}
                             animate={{ opacity: 1, x: 0 }}
@@ -214,18 +240,38 @@ function Home() {
                             <Typography
                                 variant="h3"
                                 style={{ fontFamily: 'Staatliches' }}
-                                className="names_genre"
+                                className="Txt_Starring"
                             >
-                                Coming Soon...
+                                New Trailers
                             </Typography>
                         </motion.div>
-                        <motion.div
-                            initial={{ opacity: 0, x: 1000 }}
-                            animate={{ opacity: 1, x: 0 }}
-                            transition={{ duration: 1.5, delay: 1.5 }}
+                        <Swiper 
+                        spaceBetween={60} 
+                        slidesPerView={1} 
+                        navigation={true}
+                        loop={true}
+                        speed={1000}
+                        modules={[ Navigation ]}
+                        style={{
+                            padding: 0, 
+                            height: '100%',
+                        }}
+                        className="mySwiper"
                         >
-                            <VideoPlayer playlist={playlist} currentVideoIndex={currentVideoIndex} handleVideoEnd={handleVideoEnd} />
+                        {playlist.map((url, index) => (
+                        <SwiperSlide key={index}>
+                            <motion.div
+                                initial={{ opacity: 0, x: -1000 }}
+                                animate={{ opacity: 1, x: swiperVisible ? 0 : -1000  }}
+                                transition={{ duration: 2.5 }}
+                            >
+                            {swiperVisible &&
+                            <VideoPlayer key={index} url={url} handleVideoEnd={handleVideoEnd} /> 
+                            }
                         </motion.div>
+                        </SwiperSlide>
+                        ))}
+                        </Swiper>
                     </div>
                 )}
               {visibleData.length > 0 && (
