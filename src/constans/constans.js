@@ -12,5 +12,9 @@ export const MENU = [
     {
         name: 'favorites',
         link: 'favorites'
+    },
+    {
+        name: 'about me',
+        link: 'aboutme'
     }
 ]

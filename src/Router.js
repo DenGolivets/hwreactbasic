@@ -10,6 +10,7 @@ import Auth from './layout/Auth';
 import ActorPage from './pages/ActorPage';
 import ShowsByGenre from './pages/ShowsByGenre';
 import Favorites from './pages/Favorites';
+import AboutMe from './pages/AboutMe';
 
 
 const router = createBrowserRouter([
@@ -39,6 +40,9 @@ const router = createBrowserRouter([
       },
       {  path: '/favorites',
       element: <Favorites />
+      },
+      {  path: '/aboutme',
+      element: <AboutMe />
       },
     ],
   },

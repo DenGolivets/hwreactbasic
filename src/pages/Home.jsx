@@ -43,10 +43,11 @@ const searchInputStyle = {
         transition: 'width 0.5s ease',
         '&:focus': {
             width: '400px',
+            borderColor: 'transparent',
         },
     },
     '& label': {
-        color: 'red',
+        color: 'white',
         transition: 'font-size 0.5s ease',
         '&.MuiInputLabel-outlined': {
             fontSize: '16px',
@@ -57,9 +58,10 @@ const searchInputStyle = {
     },
     '& .MuiInputLabel-outlined.MuiInputLabel-shrink': {
         transform: 'translate(14px, -6px) scale(0.75)',
+        color: 'red',
     },
     '& .MuiOutlinedInput-notchedOutline': {
-        borderColor: 'transparent',
+        borderColor: 'red',
     },
     '& .Mui-focused .MuiOutlinedInput-notchedOutline': {
         borderColor: 'transparent',
@@ -189,7 +191,7 @@ function Home() {
             onChange={handleSearch} 
             ref={searchRef}
             id="outlined-search"
-            label="Search field"
+            label="Search Show"
             variant="outlined"
             />
                 {popoverOpen && (
