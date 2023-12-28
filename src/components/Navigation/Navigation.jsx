@@ -14,10 +14,14 @@ import { NavLink, Link } from "react-router-dom";
 import { MENU } from '../../constans/constans';
 import "./navigation.css"
 import logo from '../../img/logo.png'
+import { useState, useEffect } from 'react';
+import { getAuth } from "firebase/auth";
+import { onAuthStateChanged } from 'firebase/auth';
+import LogOut from '../../pages/Auth/LogOut';
 
 
 const pages = ['Home', 'TV Shows', 'Favorites', 'About Me'];
-const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
+// const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
 
 const textStyle = {
   gap: '20px',
@@ -27,6 +31,13 @@ const textStyle = {
 function Navigation() {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
+  const [user, setUser] = useState(null);
+  const userAvatar = user && user.photoURL ? user.photoURL : "/static/images/avatar/2.jpg";
+  console.log(user && user.photoURL)
+
+  const handleLogOut = () => {
+    LogOut();
+  };
 
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
@@ -42,6 +53,17 @@ function Navigation() {
   const handleCloseUserMenu = () => {
     setAnchorElUser(null);
   };
+
+  useEffect(() => {
+    const auth = getAuth();
+    const unsubscribe = onAuthStateChanged(auth, (user) => {
+      setUser(user);
+    });
+
+    return () => {
+      unsubscribe();
+    };
+  }, []);
 
   return (
     <AppBar position="static" sx={{ backgroundColor: 'rgba(34, 34, 34, 0.1)' }}>
@@ -132,12 +154,13 @@ function Navigation() {
                 {name}
               </NavLink>
             ))}
+            <Link to="/auth/register" className="navLink">Login/Register</Link>
           </Box>
 
           <Box sx={{ flexGrow: 0 }}>
             <Tooltip title="Open settings">
               <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" />
+              <Avatar alt="User Avatar" src={userAvatar} />
               </IconButton>
             </Tooltip>
             <Menu
@@ -156,11 +179,15 @@ function Navigation() {
               open={Boolean(anchorElUser)}
               onClose={handleCloseUserMenu}
             >
-              {settings.map((setting) => (
-                <MenuItem key={setting} onClick={handleCloseUserMenu}>
-                  <Typography textAlign="center">{setting}</Typography>
-                </MenuItem>
-              ))}
+            <MenuItem onClick={handleCloseUserMenu}>
+                  <a style={{textDecoration:'none', color:'red'}} href="/profile">
+                    <Typography textAlign="center">Profile</Typography>
+                  </a>
+              </MenuItem>
+              <MenuItem onClick={ () => {handleCloseUserMenu(); handleLogOut()}}>
+                  <Typography textAlign="center">Logout</Typography>
+              </MenuItem>
+              
             </Menu>
           </Box>
         </Toolbar>
