@@ -11,6 +11,8 @@ import ActorPage from './pages/ActorPage';
 import ShowsByGenre from './pages/ShowsByGenre';
 import Favorites from './pages/Favorites';
 import AboutMe from './pages/AboutMe';
+import PrivateRoute from './components/PrivateRoute/PrivateRoute';
+import Profile from './pages/Auth/Profile';
 
 
 const router = createBrowserRouter([
@@ -21,28 +23,32 @@ const router = createBrowserRouter([
     children: [
       {
         path: "/home",
-        element: <Home />,
+        element: <PrivateRoute><Home /></PrivateRoute>,
       },
       {
         path: "/show/:filmId",
-        element: <FilmDetails />,
+        element: <PrivateRoute><FilmDetails /></PrivateRoute>,
       },
       {
         path: "/tvshows",
-        element: <TvShows />
+        element: <PrivateRoute><TvShows /></PrivateRoute>,
       },
       {
         path: "/actor/:actorId",
-        element: <ActorPage />,
+        element: <PrivateRoute><ActorPage /></PrivateRoute>,
       },
       {  path: '/show/Genre/:genres',
-        element: <ShowsByGenre/>
+        element: <PrivateRoute><ShowsByGenre/></PrivateRoute>
       },
       {  path: '/favorites',
-      element: <Favorites />
+      element: <PrivateRoute><Favorites /></PrivateRoute>
       },
       {  path: '/aboutme',
-      element: <AboutMe />
+      element: <PrivateRoute><AboutMe /></PrivateRoute>
+      },
+      {
+        path: '/profile',
+        element: <PrivateRoute> <Profile/></PrivateRoute>,
       },
     ],
   },
