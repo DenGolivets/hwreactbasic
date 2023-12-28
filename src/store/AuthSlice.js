@@ -79,12 +79,6 @@ const AuthSlice = createSlice({
     setToken: (state, action) => {
       state.token = action.payload;
     },
-    // logout: (state) => {
-    //   state.fullName = '';
-    //   state.email = '';
-    //   state.token = null;
-    //   localStorage.removeItem('token');
-    // },
   },
 });
 
