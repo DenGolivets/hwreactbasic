@@ -20,7 +20,15 @@ const handleUploadAvatarToStorage = (e) => {
     const file = e.target.files[0];
     console.log('Selected file:', file);
     // addPictureStorage(file, user || {});
-    addPictureStorage(file);
+    addPictureStorage(file)
+    .then((downloadURL) => {
+        // Обновляем состояние компонента, если загрузка прошла успешно
+        console.log('Image uploaded successfully. Download URL:', downloadURL);
+    })
+    .catch((error) => {
+        // Обработка ошибок загрузки изображения
+        console.error('Error uploading image:', error);
+    });
 };
 
 const handleReload = () => {
