@@ -2,10 +2,12 @@ import { Grid, Typography, Button, Box } from '@mui/material';
 import Avatar from '@mui/material/Avatar';
 import { getAuth, updateProfile } from 'firebase/auth';
 import addPictureStorage from './addPictureStorage';
+import React, { useState, useEffect, useRef } from "react";
 
 function Profile() {
 const auth = getAuth();
 const user = auth.currentUser;
+const [profileImage, setProfileImage] = useState(user?.photoURL || "/static/images/avatar/2.jpg");
 console.log(user);
 
 const registrationDate = user.metadata.creationTime
@@ -18,21 +20,15 @@ const lastSignInDate = user.metadata.lastSignInTime
 
 const handleUploadAvatarToStorage = (e) => {
     const file = e.target.files[0];
-    console.log('Selected file:', file);
     // addPictureStorage(file, user || {});
     addPictureStorage(file)
     .then((downloadURL) => {
-        // Обновляем состояние компонента, если загрузка прошла успешно
+        setProfileImage(downloadURL);
         console.log('Image uploaded successfully. Download URL:', downloadURL);
     })
     .catch((error) => {
-        // Обработка ошибок загрузки изображения
         console.error('Error uploading image:', error);
     });
-};
-
-const handleReload = () => {
-    window.location.reload();
 };
 
 const handleUpdateDisplayName = () => {
@@ -133,7 +129,7 @@ return (
                 borderColor: 'red',
                 background: 'white',
         }}} 
-        onClick={handleReload} 
+        onClick={() => window.location.reload()}
         variant="outlined" 
         size="small"
         >
