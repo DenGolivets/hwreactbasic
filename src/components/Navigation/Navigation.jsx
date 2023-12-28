@@ -158,7 +158,7 @@ function Navigation() {
                 {name}
               </NavLink>
             ))}
-            <Link to="/auth/register" className="navLink">Login/Register</Link>
+            <NavLink  to="/auth/register" className="navLink">Login/Register</NavLink >
           </Box>
 
           <Box sx={{ flexGrow: 0 }}>
@@ -188,9 +188,11 @@ function Navigation() {
               onClose={handleCloseUserMenu}
             >
             <MenuItem onClick={handleCloseUserMenu}>
-                  <a style={{textDecoration:'none', color:'red'}} href="/profile">
+                  {/* <a style={{textDecoration:'none', color:'red'}} href="/profile"> */}
+                  <NavLink to="/profile" className="navLink">
                     <Typography textAlign="center">Profile</Typography>
-                  </a>
+                  {/* </a> */}
+                  </NavLink>
               </MenuItem>
               <MenuItem onClick={ () => {handleCloseUserMenu(); handleLogOut()}}>
                   <Typography textAlign="center">Logout</Typography>
