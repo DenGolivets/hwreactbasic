@@ -1,7 +1,7 @@
 import { getStorage, ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
 import addPictureBase from "./addPictureBase";
 
-function addPictureStorage(file, user) {
+function addPictureStorage(file) {
     const storage = getStorage();
 
     /** @type {any} */
@@ -11,6 +11,7 @@ function addPictureStorage(file, user) {
 
     // const storageRef = ref(storage, `images/${user.uid}/${file.name}`)
     const storageRef = ref(storage, 'images/' + file.name);
+    return new Promise((resolve, reject) => {
     const uploadTask = uploadBytesResumable(storageRef, file, metadata);
 
     uploadTask.on('state_changed',
@@ -31,28 +32,36 @@ function addPictureStorage(file, user) {
         // console.error('Error during upload:', error);
         // A full list of error codes is available at
         // https://firebase.google.com/docs/storage/web/handle-errors
-        switch (error.code) {
-        case 'storage/unauthorized':
+        // switch (error.code) {
+        // case 'storage/unauthorized':
    
-            break;
-        case 'storage/canceled':
+        //     break;
+        // case 'storage/canceled':
 
-            break;
+        //     break;
 
-        // ...
+        // // ...
 
-        case 'storage/unknown':
+        // case 'storage/unknown':
 
-            break;
-        }
+        //     break;
+        console.error('Error during upload:', error);
+        reject(error);
+        
     }, 
     () => {
         getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
         console.log('File available at', downloadURL);
         addPictureBase(downloadURL);
+        resolve(downloadURL);
+        })
+        .catch((error) => {
+            console.error('Error getting download URL:', error);
+            reject(error); // Отклоняем промис при ошибке получения URL
         });
     }
     );
+});
 }
 
 export default addPictureStorage;
