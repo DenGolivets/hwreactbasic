@@ -19,7 +19,8 @@ const lastSignInDate = user.metadata.lastSignInTime
 const handleUploadAvatarToStorage = (e) => {
     const file = e.target.files[0];
     console.log('Selected file:', file);
-    addPictureStorage(file, user || {});
+    // addPictureStorage(file, user || {});
+    addPictureStorage(file);
 };
 
 const handleReload = () => {

@@ -31,9 +31,9 @@ const textStyle = {
 function Navigation() {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
-  const [user, setUser] = useState(null);
-  const userAvatar = user && user.photoURL ? user.photoURL : "/static/images/avatar/2.jpg";
-  console.log(user && user.photoURL)
+  // const [user, setUser] = useState(null);
+  // const userAvatar = user && user.photoURL ? user.photoURL : "/static/images/avatar/2.jpg";
+  // console.log(user && user.photoURL)
 
   const handleLogOut = () => {
     LogOut();
@@ -54,16 +54,20 @@ function Navigation() {
     setAnchorElUser(null);
   };
 
-  useEffect(() => {
-    const auth = getAuth();
-    const unsubscribe = onAuthStateChanged(auth, (user) => {
-      setUser(user);
-    });
+  // useEffect(() => {
+  //   const auth = getAuth();
+  //   const unsubscribe = onAuthStateChanged(auth, (user) => {
+  //     setUser(user);
+  //   });
 
-    return () => {
-      unsubscribe();
-    };
-  }, []);
+  //   return () => {
+  //     unsubscribe();
+  //   };
+  // }, []);
+
+  const auth = getAuth();
+  const user = auth.currentUser;
+  console.log(user)
 
   return (
     <AppBar position="static" sx={{ backgroundColor: 'rgba(34, 34, 34, 0.1)' }}>
@@ -160,7 +164,11 @@ function Navigation() {
           <Box sx={{ flexGrow: 0 }}>
             <Tooltip title="Open settings">
               <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-              <Avatar alt="User Avatar" src={userAvatar} />
+              {user ? (
+              <Avatar  src={user.photoURL} />
+              ) : (
+                <Avatar src="/static/images/avatar/2.jpg" />
+                )}
               </IconButton>
             </Tooltip>
             <Menu
