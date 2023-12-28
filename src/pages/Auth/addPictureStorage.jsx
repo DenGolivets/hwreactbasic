@@ -9,7 +9,8 @@ function addPictureStorage(file, user) {
     contentType: 'image/jpeg'
     };
 
-    const storageRef = ref(storage, `images/${user.uid}/${file.name}`)
+    // const storageRef = ref(storage, `images/${user.uid}/${file.name}`)
+    const storageRef = ref(storage, 'images/' + file.name);
     const uploadTask = uploadBytesResumable(storageRef, file, metadata);
 
     uploadTask.on('state_changed',
@@ -27,23 +28,23 @@ function addPictureStorage(file, user) {
         }
     }, 
     (error) => {
-        console.error('Error during upload:', error);
+        // console.error('Error during upload:', error);
         // A full list of error codes is available at
         // https://firebase.google.com/docs/storage/web/handle-errors
-        // switch (error.code) {
-        // case 'storage/unauthorized':
+        switch (error.code) {
+        case 'storage/unauthorized':
    
-        //     break;
-        // case 'storage/canceled':
+            break;
+        case 'storage/canceled':
 
-        //     break;
+            break;
 
-        // // ...
+        // ...
 
-        // case 'storage/unknown':
+        case 'storage/unknown':
 
-        //     break;
-        // }
+            break;
+        }
     }, 
     () => {
         getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {

@@ -11,8 +11,8 @@ import { getAuth } from "firebase/auth";
 
 function Main () {
     const location = useLocation();
-    const auth = getAuth();
-    const user = auth.currentUser;
+    // const auth = getAuth();
+    // const user = auth.currentUser;
     const visiblePaths = ['/tvshows', '/home', '/favorites', '/aboutme'];
 
     const mainContainerStyle = {
@@ -36,7 +36,7 @@ function Main () {
     return (
         <div className="App" style={mainContainerStyle}>
             {visiblePaths.includes(location.pathname) && <HeaderSlider />}
-            <Navigation user={user}/>
+            <Navigation />
             <Grid container style={{ flex: 1 }}>
                 <Outlet/>
             </Grid>
