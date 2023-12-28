@@ -20,6 +20,7 @@ const router = createBrowserRouter([
     path: "/",
     element: <Main />,
     errorElement: <NotFound />,
+    basename: process.env.PUBLIC_URL,
     children: [
       {
         path: "/home",
