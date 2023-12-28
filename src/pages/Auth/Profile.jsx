@@ -3,8 +3,10 @@ import Avatar from '@mui/material/Avatar';
 import { getAuth, updateProfile } from 'firebase/auth';
 import addPictureStorage from './addPictureStorage';
 import React, { useState, useEffect, useRef } from "react";
+import { useNavigate } from 'react-router-dom';
 
 function Profile() {
+const navigate = useNavigate();
 const auth = getAuth();
 const user = auth.currentUser;
 const [profileImage, setProfileImage] = useState(user?.photoURL || "/static/images/avatar/2.jpg");
@@ -42,6 +44,10 @@ const handleUpdateDisplayName = () => {
             console.error('Error updating display name:', error.message);
         });
     }
+};
+
+const handleReload = () => {
+    navigate('/profile');
 };
 
 return (
@@ -129,7 +135,7 @@ return (
                 borderColor: 'red',
                 background: 'white',
         }}} 
-        onClick={() => window.location.reload()}
+        onClick={handleReload}
         variant="outlined" 
         size="small"
         >
