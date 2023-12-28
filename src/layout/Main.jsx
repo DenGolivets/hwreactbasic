@@ -10,7 +10,7 @@ import HeaderSlider from "../components/HeaderSlider/HeaderSlider";
 
 function Main () {
     const location = useLocation();
-    const visiblePaths = ['/tvshows', '/home', '/favorites'];
+    const visiblePaths = ['/tvshows', '/home', '/favorites', '/aboutme'];
 
     const mainContainerStyle = {
         display: 'flex',
