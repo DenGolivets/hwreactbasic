@@ -190,12 +190,14 @@ function Navigation() {
             <MenuItem onClick={handleCloseUserMenu}>
                   {/* <a style={{textDecoration:'none', color:'red'}} href="/profile"> */}
                   <NavLink to="/profile" className="navLink">
-                    <Typography textAlign="center">Profile</Typography>
+                    <Typography textAlign="center" sx={{ color: 'red', fontSize: '14px', right: '2px' }}>Profile</Typography>
                   {/* </a> */}
                   </NavLink>
               </MenuItem>
               <MenuItem onClick={ () => {handleCloseUserMenu(); handleLogOut()}}>
-                  <Typography textAlign="center">Logout</Typography>
+                <NavLink to="/auth/register" className="navLink">
+                  <Typography textAlign="center" sx={{ color: 'red', fontSize: '14px', }}>Logout</Typography>
+                  </NavLink>
               </MenuItem>
               
             </Menu>
