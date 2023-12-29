@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import Rating from "@mui/material/Rating";
 import Typography from '@mui/material/Typography';
 import FavoriteIcon from '@mui/icons-material/Favorite';
@@ -15,9 +15,11 @@ import { useNavigate } from 'react-router-dom';
 import FilmGenreIcon from '../../img/FilmGenre.png'
 import { useDispatch } from 'react-redux';
 
+function SingleItemHeader({ id, name, rating, genres, averageRuntime, premiered, image, views, addToFavorites }) {
 
-function SingleItemHeader({ id, name, rating, genres, averageRuntime, premiered, image, views }) {
 
+  const [favorites, setFavorites] = useState([]);
+  const isFavorite = favorites.some((movie) => movie.id === id);
   const navigate  = useNavigate();
   const dispatch = useDispatch();
 
@@ -42,7 +44,7 @@ function SingleItemHeader({ id, name, rating, genres, averageRuntime, premiered,
               linear-gradient(rgba(255, 255, 255, 0.6),
               calc((60vw - 770px) - 370px),
               rgba(0, 0, 0, 0.5)), 
-              url(${image?.original}) 
+              url(${image}) 
               center/cover no-repeat fixed,
               #f0e9e9
               `,
@@ -133,7 +135,7 @@ function SingleItemHeader({ id, name, rating, genres, averageRuntime, premiered,
             <StyledGrayCircle className='graycircle-hover'>
             <StyledWhiteCircle>
             <IconButton aria-label="add to favorites">
-            <ShareIcon 
+            <ShareIcon
             className='iconhover' 
             sx={{ 
               color: 'red', 
@@ -145,14 +147,11 @@ function SingleItemHeader({ id, name, rating, genres, averageRuntime, premiered,
             </StyledGrayCircle>
             <StyledGrayCircle className='graycircle-hover'>
             <StyledWhiteCircle>
-            <IconButton aria-label="share" 
-            // onClick={handleAddToFavorites}
-            >
+            <IconButton aria-label="share">
                 <FavoriteIcon 
-                className='iconhovershare' 
-                sx={{ color: 'red', width: '15px', 
-                // color: isFavorite ? 'red' : 'black' 
-              }} 
+                onClick={() => addToFavorites({ id, name, image })}
+                className='iconhovershare'
+                sx={{ color: 'red' , fontSize: '18px'}} 
                 />
             </IconButton>
             </StyledWhiteCircle>
@@ -175,7 +174,7 @@ function SingleItemHeader({ id, name, rating, genres, averageRuntime, premiered,
           <div>
             <img
               className={`Singleimg singleimg-hover ${!image ? 'default-image-size' : ''}`}
-              src={image ? image.medium || DEFAULT_IMAGE : DEFAULT_IMAGE}
+              src={image}
               alt={name}
             />
           </div>
