@@ -159,6 +159,7 @@ function Favorites() {
                     image={image}
                     onClick={() => handleCardClick(id)}
                 />
+
             </Grid>
             ))}
             </Grid>

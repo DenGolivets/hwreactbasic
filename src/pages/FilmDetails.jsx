@@ -4,11 +4,16 @@ import axios from "axios";
 import SingleItemHeader from "../components/SingleItemHeader/SingleItemHeader";
 import SingleItemTabs from "../components/SingleItemTabs/SingleItemTabs";
 import ActorItem from "../components/ActorItem/ActorItem";
+import { useDispatch, useSelector } from 'react-redux';
+import { addToFavorites, removeFromFavorites } from "../store/FavoritesSlice";
+import cloneDeep from 'lodash/cloneDeep';
+import { DEFAULT_IMAGE } from "../constans/constans";
 
 function FilmDetails() {
     const { filmId } = useParams();
     const [filmData, setFilmData] = useState({});
     const [activeTab, setActiveTab] = useState(0);
+    const dispatch = useDispatch();
 
     useEffect(() => {
         async function fetchFilmData() {
@@ -25,6 +30,8 @@ function FilmDetails() {
         fetchFilmData();
       }, [filmId]);
 
+      
+
       const {
         id,
         name,
@@ -32,11 +39,16 @@ function FilmDetails() {
         genres,
         averageRuntime,
         premiered,
-        image,
         series,
+        image,
         summary,
-        views
+        views,
       } = filmData;
+
+      // const image = filmData.image || {};
+      // const imageUrl = image?.original;
+      const imageUrl = filmData.image?.original || DEFAULT_IMAGE;
+      
     
       const handleChangeTab = (event, newValue) => {
         setActiveTab(newValue);
@@ -51,12 +63,11 @@ function FilmDetails() {
               genres={genres}
               averageRuntime={averageRuntime}
               premiered={premiered}
-              image={image}
+              image={imageUrl}
               views={views}
-              // onClick={handleCardClick}
-              // onAddToFavorites={addToFavorites}
-              // onClick={() => handleCardClick(id)}
-              // onAddToFavorites={() => addToFavorites({ id, name, image })}
+              addToFavorites={(movie) => dispatch(addToFavorites(movie))}
+              // addToFavorites={() => dispatch(addToFavorites({ id, name, image }))}
+
           />
             <SingleItemTabs
               activeTab={activeTab}

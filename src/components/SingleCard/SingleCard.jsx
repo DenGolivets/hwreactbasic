@@ -22,6 +22,7 @@ export default function SingleCard({
     const isFavorite = favorites.some((movie) => movie.id === id);
     
     const handleAddToFavorites = () => {
+        
         if (isFavorite) {
             dispatch(removeFromFavorites({ id }));
         } else {
@@ -46,6 +47,7 @@ export default function SingleCard({
         className="card"
         >
             <div className='mediamain'>
+            {image ? (
         <CardMedia
             image={image}
             component="img"
@@ -54,10 +56,12 @@ export default function SingleCard({
                 height: "370px", 
                 width: "260px",
                 position: "relative",
-
             }}
             className="cardMedia"
         />
+        ) : (
+            <div className="no-image">No Image</div>
+            )}
         </div>
         <div className='Absol'>
         <Link
