@@ -47,12 +47,12 @@ function AboutMe() {
             <div ref={aboutContainerRef} className="about_container">
             
                 <a href="#" className="about_photo">
-                <nav class="social">
+                <nav className="social">
                 <ul>
-                    <li><a href="https://www.instagram.com/terra4beat/" target="a_blank">Instagram <i class="fa fa-instagram"></i></a></li>
-                    <li><a href="https://www.facebook.com/den.golivets" target="a_blank">Facebook <i class="fa fa-facebook"></i></a></li>
-                    <li><a href="https://soundcloud.com/terra4beat" target="a_blank">SoundCloud <i class="fa fa-soundcloud"></i></a></li>
-                    <li><a href="https://github.com/DenGolivets?tab=repositories" target="a_blank">GitHub <i class="fa fa-github"></i></a></li>
+                    <li><a href="https://www.instagram.com/terra4beat/" target="a_blank">Instagram <i className="fa fa-instagram"></i></a></li>
+                    <li><a href="https://www.facebook.com/den.golivets" target="a_blank">Facebook <i className="fa fa-facebook"></i></a></li>
+                    <li><a href="https://soundcloud.com/terra4beat" target="a_blank">SoundCloud <i className="fa fa-soundcloud"></i></a></li>
+                    <li><a href="https://github.com/DenGolivets?tab=repositories" target="a_blank">GitHub <i className="fa fa-github"></i></a></li>
                 </ul>
             </nav>
                     <h1 style={{ fontFamily: 'Staatliches' }}>Den</h1>
