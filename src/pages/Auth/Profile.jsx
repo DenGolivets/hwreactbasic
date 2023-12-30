@@ -1,151 +1,169 @@
-import { Grid, Typography, Button, Box } from '@mui/material';
-import Avatar from '@mui/material/Avatar';
+import React, { useState, useEffect } from "react";
+import { useNavigate } from 'react-router-dom';
+import { Grid, Typography, Button, Box, Avatar, Paper } from '@mui/material';
 import { getAuth, updateProfile } from 'firebase/auth';
 import addPictureStorage from './addPictureStorage';
-import React, { useState, useEffect, useRef } from "react";
-import { useNavigate } from 'react-router-dom';
+import { TextField } from '@mui/material';
+import WebFont from 'webfontloader';
 
 function Profile() {
-const navigate = useNavigate();
-const auth = getAuth();
-const user = auth.currentUser;
-const [profileImage, setProfileImage] = useState(user?.photoURL || "/static/images/avatar/2.jpg");
-console.log(user);
+    const navigate = useNavigate();
+    const auth = getAuth();
+    const user = auth.currentUser;
+    const [profileImage, setProfileImage] = useState(user?.photoURL || "/static/images/avatar/2.jpg");
 
-const registrationDate = user.metadata.creationTime
-? new Date(user.metadata.creationTime)
-: null;
+    const [isEditingName, setIsEditingName] = useState(false);
+    const [newDisplayName, setNewDisplayName] = useState(user?.displayName || "");
 
-const lastSignInDate = user.metadata.lastSignInTime
-? new Date(user.metadata.lastSignInTime)
-: null;
+    const registrationDate = user.metadata.creationTime
+        ? new Date(user.metadata.creationTime)
+        : null;
 
-const handleUploadAvatarToStorage = (e) => {
-    const file = e.target.files[0];
-    // addPictureStorage(file, user || {});
-    addPictureStorage(file)
-    .then((downloadURL) => {
-        setProfileImage(downloadURL);
-        console.log('Image uploaded successfully. Download URL:', downloadURL);
-    })
-    .catch((error) => {
-        console.error('Error uploading image:', error);
-    });
-};
+    const lastSignInDate = user.metadata.lastSignInTime
+        ? new Date(user.metadata.lastSignInTime)
+        : null;
 
-const handleUpdateDisplayName = () => {
-    const newDisplayName = prompt('Enter your new display name:');
-    if (newDisplayName) {
+    const handleUploadAvatarToStorage = (e) => {
+        const file = e.target.files[0];
+        addPictureStorage(file)
+        .then((downloadURL) => {
+            setProfileImage(downloadURL);
+            console.log('Image uploaded successfully. Download URL:', downloadURL);
+        })
+        .catch((error) => {
+            console.error('Error uploading image:', error);
+        });
+    };
+
+//   const handleUpdateDisplayName = () => {
+//     const newDisplayName = prompt('Enter your new display name:');
+//     if (newDisplayName) {
+//       updateProfile(auth.currentUser, { displayName: newDisplayName })
+//         .then(() => {
+//           console.log('Display name updated successfully!');
+//         })
+//         .catch((error) => {
+//           console.error('Error updating display name:', error.message);
+//         });
+//     }
+//   };
+
+    const handleUpdateDisplayName = () => {
+        setIsEditingName(true);
+    };
+
+    const handleSaveDisplayName = () => {
         updateProfile(auth.currentUser, { displayName: newDisplayName })
         .then(() => {
             console.log('Display name updated successfully!');
+            setIsEditingName(false);
         })
         .catch((error) => {
             console.error('Error updating display name:', error.message);
         });
-    }
-};
+    };
 
-const handleReload = () => {
-    navigate('/profile');
-};
+    const handleCancelEditName = () => {
+        setIsEditingName(false);
+    };
 
-return (
-    <Grid container alignContent="flex-start">
-        <Grid sx={{ height: '40px', margin: '20px', padding: '10px' }}>
-        <Typography variant="h5" sx={{ color: 'red', textTransform: 'uppercase'}}>Personal information</Typography>
+    const handleReload = () => {
+        navigate('/profile');
+    };
+
+    useEffect(() => {
+        WebFont.load({
+            google: {
+            families: ['Abel', 'Roboto', 'Nanum Gothic', 'Fjalla One'], 
+        },
+        });
+    }, []);
+
+    return (
+        <Grid container spacing={2} style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+        <Grid item xs={12} md={6}>
+            <Paper elevation={3} sx={{ p: 2, border: '2px red solid' }}>
+            <Typography variant="h5" color="primary" sx={{ fontFamily: 'Nanum Gothic', textTransform: 'uppercase', color: 'red', fontWeight: 'bold', textAlign: 'center' }}>Personal Information</Typography>
+            <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', mt: 2 }}>
+                <Avatar src={profileImage} sx={{ width: 100, height: 100, mb: 2 }} />
+                <Typography variant="h6" fontWeight="bold" fontSize={24} mb={2} sx={{ fontFamily: 'Fjalla One' }}>
+                {user.displayName}
+                </Typography>
+                {isEditingName ? (
+                    <Box style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', mt: 2 }}>
+                    <TextField
+                    label="New Display Name"
+                    variant="outlined"
+                    value={newDisplayName}
+                    onChange={(e) => setNewDisplayName(e.target.value)}
+                    sx={{
+                        mb: 2,
+                        '& .MuiOutlinedInput-root.Mui-focused fieldset': { borderColor: 'red' },
+                        '& .MuiOutlinedInput-root fieldset': { borderColor: 'black' },
+                        '&:hover .MuiOutlinedInput-root fieldset': { borderColor: 'red' },
+                    }}
+                    />
+                    <Button variant="outlined" size="small" onClick={handleSaveDisplayName} sx={{ color: 'red', borderColor: 'green', bgcolor: 'black' }}>
+                    Save
+                    </Button>
+                    <Button variant="outlined" size="small" onClick={handleCancelEditName} sx={{ mt: 1, color: 'red', borderColor: 'red', bgcolor: 'black' }}>
+                    Cancel
+                    </Button>
+                </Box>
+                ) : (
+                <Button variant="outlined" size="small" onClick={handleUpdateDisplayName} sx={{ color: 'red', borderColor: 'red', bgcolor: 'black' }}>
+                Change Name
+                </Button>
+                )}
+            </Box>
+            <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', mt: 2 }}>
+                <Typography fontWeight="bold" mb={1}>Last Sign-In:</Typography>
+                <Typography variant="subtitle1">
+                {lastSignInDate ? lastSignInDate.toLocaleDateString() : 'N/A'}
+                </Typography>
+            </Box>
+            <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', mt: 2 }}>
+                <Typography fontWeight="bold" mb={1}>Email:</Typography>
+                <Typography variant="subtitle1">
+                {user.email}
+                </Typography>
+            </Box>
+            <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', mt: 2 }}>
+                <Typography fontWeight="bold" mb={1}>Registration Date:</Typography>
+                <Typography variant="subtitle1">
+                {registrationDate ? registrationDate.toLocaleDateString() : 'N/A'}
+                </Typography>
+                <Grid item xs={12} md={6} style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+            <Paper elevation={3} sx={{ p: 2, mt: 2, border: '1px red solid' }}>
+            <Typography fontSize={12} mb={2}>
+                Would you like to add or change your profile avatar?
+            </Typography>
+            {/* <input type="file" id="avatar" name="avatar" accept="image/png, image/jpeg" onChange={handleUploadAvatarToStorage} /> */}
+            <Box sx={{ display: 'flex', justifyContent: 'center' }}>
+            <label htmlFor="avatar">
+                <input type="file" id="avatar" name="avatar" accept="image/png, image/jpeg" onChange={handleUploadAvatarToStorage} style={{ display: 'none' }} />
+                <Button
+                    variant="outlined"
+                    size="small"
+                    component="span"
+                    sx={{ mt: 2, color: 'red', borderColor: 'red', bgcolor: 'black', '&:hover': { borderColor: '', bgcolor: '' } }}
+                >
+                    Upload Avatar
+                </Button>
+                </label>
+            <Button variant="outlined" size="small" onClick={handleReload} sx={{ mt: 2, color: 'red', borderColor: 'red', bgcolor: 'black' }}>
+                Refresh
+            </Button>
+            </Box>
+            </Paper>
         </Grid>
-        <Grid
-        container
-        direction="column"
-        sx={{ margin: '20px', backgroundColor: '#8d8a8ad2', padding: '10px' }}
-        >
-        {user.photoURL ? (
-        <Avatar src={user.photoURL} sx={{ width: 100, height: 100, margin: '10px' }} />
-        ) : (
-        <Avatar src="/static/images/avatar/2.jpg" sx={{ width: 100, height: 100, margin: '10px' }} />
-        )}
-        <Typography variant="h6" style={{ margin: '10px', color: 'white', fontWeight: 'bold', fontSize: '24px'}}>
-            {user.displayName}
-        </Typography>
-        <Button sx={{ 
-            marginLeft: '10px', 
-            color: 'red', 
-            borderColor: 'red', 
-            background: 'black',
-            width: '80px',
-            height: '30px',
-            '&:hover': {
-                borderColor: 'red',
-                background: 'white',
-            }}} 
-            onClick={handleUpdateDisplayName} 
-            variant="outlined" 
-            size="small"
-            >
-        <Typography style={{ fontSize: '8px' }}>
-            Change Name
-        </Typography>
-        </Button>
-        <Box
-            sx={{
-            display: 'flex',
-            flexDirection: 'column',
-        }}
-        >
-        <Box
-            sx={{
-            display: 'flex',
-            justifyContent: 'flex-end',
-            alignItems: 'center',
-        }}
-        >
-        <Box sx={{  }}>
-        <Typography style={{ margin: '10px 0', fontWeight: 'bold' }}>
-            Last Sign-In :
-        </Typography>
-        <Typography variant="subtitle1" style={{ margin: '0 10px' }}>
-            {lastSignInDate ? lastSignInDate.toLocaleDateString() : 'N/A'}
-        </Typography>
-        </Box>
-        </Box>
-        <Typography style={{ margin: '10px 10px 0', fontWeight: 'bold' }}>
-            Email :
-        </Typography>
-        <Typography variant="subtitle1" style={{ margin: '0 10px' }}>
-            {user.email}
-        </Typography>
-        <Typography style={{ margin: '10px 10px 0', fontWeight: 'bold' }}>
-            Registration Date :
-        </Typography>
-        <Typography variant="subtitle1" style={{ margin: '0 10px' }}>
-            {registrationDate ? registrationDate.toLocaleDateString() : 'N/A'}
-        </Typography>
-        </Box>
-        <Typography style={{ margin: '20px 10px', fontSize: '12px' }}>
-            Would you like to add or change your profile picture?
-        </Typography>
-        <input type="file" id="avatar" name="avatar" accept="image/png, image/jpeg" onChange={handleUploadAvatarToStorage} />
-        <Button sx={{
-            marginTop: '5px',
-            color: 'red', 
-            borderColor: 'red', 
-            background: 'black',
-            '&:hover': {
-                borderColor: 'red',
-                background: 'white',
-        }}} 
-        onClick={handleReload}
-        variant="outlined" 
-        size="small"
-        >
-            Reload
-        </Button>
-
+            </Box>
+            </Paper>
+            
+        </Grid>
         
-    </Grid>
-    </Grid>
-);
+        </Grid>
+    );
 }
 
 export default Profile;

@@ -8,7 +8,7 @@ import 'swiper/css/bundle';
 import 'swiper/less/navigation';
 import SingleCard from "../components/SingleCard/SingleCard";
 import { useDispatch, useSelector } from "react-redux";
-import { action, setSearch } from "../store/SearchSlice";
+import { setSearch } from "../store/SearchSlice";
 import { DEFAULT_IMAGE } from "../constans/constans";
 import BackBanner from '../img/5713094.jpg';
 import { Button } from '@mui/material';
@@ -17,7 +17,7 @@ import Typography from '@mui/material/Typography';
 import { styled } from '@mui/system';
 import './home.css'
 import VideoPlayer from "../components/VideoPlayer/VideoPlayer";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion } from "framer-motion";
 import WebFont from 'webfontloader';
 import TextField from '@mui/material/TextField';
 
