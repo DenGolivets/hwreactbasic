@@ -5,15 +5,17 @@ import { getAuth, updateProfile } from 'firebase/auth';
 import addPictureStorage from './addPictureStorage';
 import { TextField } from '@mui/material';
 import WebFont from 'webfontloader';
+import axios from 'axios';
+import CountryFlag from 'react-country-flag';
 
 function Profile() {
     const navigate = useNavigate();
     const auth = getAuth();
     const user = auth.currentUser;
     const [profileImage, setProfileImage] = useState(user?.photoURL || "/static/images/avatar/2.jpg");
-
     const [isEditingName, setIsEditingName] = useState(false);
     const [newDisplayName, setNewDisplayName] = useState(user?.displayName || "");
+    const [userCountry, setUserCountry] = useState("");
 
     const registrationDate = user.metadata.creationTime
         ? new Date(user.metadata.creationTime)
@@ -22,6 +24,17 @@ function Profile() {
     const lastSignInDate = user.metadata.lastSignInTime
         ? new Date(user.metadata.lastSignInTime)
         : null;
+
+    useEffect(() => {
+    const apiKey = '4a276817015d8e';
+    axios.get(`https://ipinfo.io?token=${apiKey}`)
+    .then(response => {
+        setUserCountry(response.data.country);
+    })
+    .catch(error => {
+        console.error('Error fetching user location:', error);
+    });
+}, [user]);
 
     const handleUploadAvatarToStorage = (e) => {
         const file = e.target.files[0];
@@ -70,7 +83,7 @@ function Profile() {
     const handleReload = () => {
         navigate('/profile');
     };
-
+    
     useEffect(() => {
         WebFont.load({
             google: {
@@ -82,12 +95,25 @@ function Profile() {
     return (
         <Grid container spacing={2} style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
         <Grid item xs={12} md={6}>
-            <Paper elevation={3} sx={{ p: 2, border: '2px red solid' }}>
+            <Paper elevation={3} sx={{ p: 2, border: '2px red solid', backgroundColor: '#f5ebe0' }}>
             <Typography variant="h5" color="primary" sx={{ fontFamily: 'Nanum Gothic', textTransform: 'uppercase', color: 'red', fontWeight: 'bold', textAlign: 'center' }}>Personal Information</Typography>
             <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', mt: 2 }}>
                 <Avatar src={profileImage} sx={{ width: 100, height: 100, mb: 2 }} />
                 <Typography variant="h6" fontWeight="bold" fontSize={24} mb={2} sx={{ fontFamily: 'Fjalla One' }}>
                 {user.displayName}
+                {userCountry && (
+                 <CountryFlag
+                countryCode={userCountry}
+                svg
+                style={{
+                    width: '0.7em',
+                    height: '0.7em',
+                    marginLeft: '0.5em',
+                    marginRight: '0.5em',
+                    marginBottom: '0.5em'
+                }}
+                />
+                )}
                 </Typography>
                 {isEditingName ? (
                     <Box style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', mt: 2 }}>
@@ -111,7 +137,7 @@ function Profile() {
                     </Button>
                 </Box>
                 ) : (
-                <Button variant="outlined" size="small" onClick={handleUpdateDisplayName} sx={{ color: 'red', borderColor: 'red', bgcolor: 'black' }}>
+                <Button variant="outlined" size="small" onClick={handleUpdateDisplayName} sx={{ color: 'red', borderColor: 'red', bgcolor: '#333533' }}>
                 Change Name
                 </Button>
                 )}
@@ -134,7 +160,7 @@ function Profile() {
                 {registrationDate ? registrationDate.toLocaleDateString() : 'N/A'}
                 </Typography>
                 <Grid item xs={12} md={6} style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-            <Paper elevation={3} sx={{ p: 2, mt: 2, border: '1px red solid' }}>
+            <Paper elevation={3} sx={{ p: 2, mt: 2, border: '1px red solid', backgroundColor: '#e3d5ca' }}>
             <Typography fontSize={12} mb={2}>
                 Would you like to add or change your profile avatar?
             </Typography>
@@ -146,12 +172,12 @@ function Profile() {
                     variant="outlined"
                     size="small"
                     component="span"
-                    sx={{ mt: 2, color: 'red', borderColor: 'red', bgcolor: 'black', '&:hover': { borderColor: '', bgcolor: '' } }}
+                    sx={{ mt: 2, color: 'red', borderColor: 'red', bgcolor: '#323031', '&:hover': { borderColor: '', bgcolor: '' } }}
                 >
                     Upload Avatar
                 </Button>
                 </label>
-            <Button variant="outlined" size="small" onClick={handleReload} sx={{ mt: 2, color: 'red', borderColor: 'red', bgcolor: 'black' }}>
+            <Button variant="outlined" size="small" onClick={handleReload} sx={{ mt: 2, color: 'red', borderColor: 'red', bgcolor: '#323031' }}>
                 Refresh
             </Button>
             </Box>
@@ -159,9 +185,7 @@ function Profile() {
         </Grid>
             </Box>
             </Paper>
-            
         </Grid>
-        
         </Grid>
     );
 }
