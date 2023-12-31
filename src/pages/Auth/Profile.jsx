@@ -25,7 +25,6 @@ function Profile() {
     const [isUpdateSuccess, setIsUpdateSuccess] = useState(false);
     const [snackbarOpen, setSnackbarOpen] = useState(false);
 
-
     const registrationDate = user.metadata.creationTime
         ? new Date(user.metadata.creationTime)
         : null;
@@ -92,9 +91,8 @@ function Profile() {
         });
     };
 
-    const handleSnackbarClose = () => {
+    const handleSnackbarClose = (event, reason) => {
         setSnackbarOpen(false);
-        setIsUpdateSuccess(false);
     };
 
     const handleCancelEditName = () => {
@@ -120,8 +118,7 @@ function Profile() {
             <Typography variant="h5" color="primary" sx={{ fontFamily: 'Nanum Gothic', textTransform: 'uppercase', color: 'red', fontWeight: 'bold', textAlign: 'center' }}>Personal Information</Typography>
             <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', mt: 2 }}>
                 <Avatar 
-                // src={profileImage} 
-                src={isEditingAvatar ? profileImage : profileImage}
+                src={profileImage} 
                 sx={{ width: 100, height: 100, mb: 2 }} />
                 <Typography variant="h6" fontWeight="bold" fontSize={24} mb={2} sx={{ fontFamily: 'Fjalla One' }}>
                 {user.displayName}
@@ -166,7 +163,6 @@ function Profile() {
                 Change Name
                 </Button>
                 </Tooltip>
-                  
                 )}
             </Box>
             <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', mt: 2 }}>
@@ -225,7 +221,7 @@ function Profile() {
                     </Alert>
                 }
             />
-        </Stack>
+        </Stack> 
         </Grid>
     );
 }
